@@ -1,0 +1,121 @@
+.login{
+   width: 100%;
+   background: #DBF5FA;
+width: auto;
+height: 100vh;
+
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0077B6;
+    padding: 1%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.left__header{
+    color: #ADE8F4;
+   font-weight: 800;
+    font-size: 30px;
+}
+
+.right__header{
+
+  max-width: 50%;
+  min-width: 30%;
+}
+.login__buton {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background: #ADE8F4;
+    border-radius: 12px;
+    padding: 6px;
+    
+
+}
+.login__buton >a{
+color: #023E8A !important ;
+}
+
+.right__header >ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: 600;
+    list-style: none;
+    flex: 0.5;
+    
+}
+li >a {
+  text-decoration: none;
+ 
+  font-size: 20px;
+    color:  #ADE8F4;
+}
+
+.login__body{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+   width: 100%;
+ 
+    }
+.login__container{
+display: flex;
+justify-content: space-around;
+align-items: center;
+
+width: 85%;
+}
+
+.login__form{
+     background: #0077B6 ; 
+     width: 385px;
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+     flex-direction: column;
+     border-radius: 50px;
+     padding: 25px;
+     mix-blend-mode: normal;
+    box-shadow: 6px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.input,  .password {
+border-radius: 25px;
+border-style: none;
+padding: 8px;
+margin-top: 20px;
+outline-style: none;
+background:#ADE8F4;
+width: 250px;
+
+}
+
+::placeholder {
+    color: #023E8A;
+
+    opacity: 1; /* Firefox */
+  }
+
+.button{
+    background: #023E8A ;
+    color: #ADE8F4;
+    width: 250px;
+    border: none;outline-style: none;
+    border: 1px solid #ADE8F4;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 43px;
+    padding: 6px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.title{
+    color: #ADE8F4;
+}
+.alert{
+    color: #ADE8F4;
+   
+}
