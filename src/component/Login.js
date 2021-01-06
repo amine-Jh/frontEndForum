@@ -34,10 +34,6 @@ const Login = (props) => {
   }
 
 
-   console.log("loading",loading);
-   console.log("password",password);
-   console.log("username",emailvalue);
-   console.log("message",message);
 
    const required = value => {
     if (!value) {
