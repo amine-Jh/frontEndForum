@@ -14,7 +14,7 @@ class AuthService {
     
 }
 
-signupStuent(name,prenom,telephone,email,annee,filliere,username)
+signupStuent(name,prenom,password,telephone,email,annee,filliere,username)
 {
   const resp= axios.post(URL+"signupStudent",{email,password,name,annee,filliere,username,telephone})
   .then(  response=> {  

@@ -1,10 +1,11 @@
 import Login from "./component/Login"
+import SignupStudent from "./component/SignupStudent"
 
 function App(props) {
   return (
     <div className="App">
       
-      <Login  />
+      <SignupStudent/>
     </div>
   );
 }
