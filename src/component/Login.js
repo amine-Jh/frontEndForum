@@ -8,6 +8,7 @@ import {isEmail} from "validator";
 import AuthService from "../services/auth.service";
 import "./css/Login.css"
 import   svg  from "./images/loginhome.svg"
+import form from 'react-validation/build/form';
 
 
 
@@ -16,21 +17,31 @@ import   svg  from "./images/loginhome.svg"
 
     
 const Login = (props) => {
+  let forml=null;
   const [emailvalue,setEmail]=useState("");
    const [password,setPassword]=useState("");
-   const [message,setMessage]=useState("hello");
-   const [loading,setLoading]=useState(false);
+   const [message,setMessage]=useState("");
+   const [response,setResponse]=useState("");
    let history=useHistory()
    // handle login submit
    const handleLogin=(e)=>{
     e.preventDefault();
-    setLoading(true);
     
-   console.log("okey")
-   AuthService.login(emailvalue,password).then( ()=>{
-    history.push("/home")
-    window.location.reload();
-   }) 
+    console.log(forml.getValues()) // will succesfully output 
+  
+    forml.validateAll();
+
+   AuthService.login(emailvalue,password).then(
+      res=>{  
+        if(res.message)
+         setResponse(res)
+         else
+       history.push("/home");
+      
+      
+      }
+   
+   ).catch(  e=> console.log("error",e)  )
   }
 
 
@@ -69,12 +80,20 @@ const Login = (props) => {
         <div className="login__container">
         <img src={svg} alt="svg"/>
 
-      <Form  className="login__form" onSubmit={ e=>handleLogin(e)}>
+      <Form   ref={e =>{  forml=e }  }  className="login__form" onSubmit={ e=>handleLogin(e)}>
       <h1 className="title" >  Connexion </h1>
      
       <Input className="input"  placeholder="Email" type="text" name="email" value={emailvalue} onChange={e=>setEmail(e.target.value)} validations={[required,email]} />
       <Input  className="password" placeholder="mot de passe" type="password" name="password" value={password} onChange={e=>setPassword(e.target.value)} validations={[required]}  />
      <br/>
+     
+     {response.message && (
+              <div className="form-group">
+                <div className="alert alert-danger" role="alert">
+                  {response.message}
+                </div>
+              </div>
+            )}
      <CheckButton  className="button" > Se connecter</CheckButton>
     </Form>
 

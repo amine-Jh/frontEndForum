@@ -14,13 +14,13 @@ class AuthService {
     
 }
 
-signupStuent(name,prenom,password,telephone,email,annee,filliere,username)
+signupStuent(name,password,telephone,email,annee,filliere,username)
 {
   const resp= axios.post(URL+"signupStudent",{email,password,name,annee,filliere,username,telephone})
   .then(  response=> {  
 return response.data
-});
-
+}).catch(  error=>{  <h1> {error} </h1>   })
+return resp;
 }
 
 

@@ -6,6 +6,12 @@
 
 }
 
+.message{
+    text-align: center;
+    padding: 4px;
+    color: var(--text);
+}
+
 .signup{
 background:  var(--bg) ;
 height: 100vh;

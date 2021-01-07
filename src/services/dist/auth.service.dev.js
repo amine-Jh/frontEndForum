@@ -43,7 +43,7 @@ function () {
     }
   }, {
     key: "signupStuent",
-    value: function signupStuent(name, prenom, password, telephone, email, annee, filliere, username) {
+    value: function signupStuent(name, password, telephone, email, annee, filliere, username) {
       var resp = _axios["default"].post(URL + "signupStudent", {
         email: email,
         password: password,
@@ -54,7 +54,13 @@ function () {
         telephone: telephone
       }).then(function (response) {
         return response.data;
+      })["catch"](function (error) {
+        if (error) {
+          console.log(error);
+        }
       });
+
+      return resp;
     }
   }, {
     key: "logout",
