@@ -1,0 +1,72 @@
+.body__profil{
+  height: 100vh;
+  background: #CAF0F8;
+}
+.Profil__student{
+  
+    color: #03045E;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+}
+.Profil__student__body{
+display: flex;
+width: 80vw;
+background: #CAF0F8;
+border: #03045E  solid 2px ;
+border-radius: 25px;
+align-items: center;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+
+}
+
+.cercle{
+  width: 10vw;
+  height: 10vw;
+  border-radius: 100%;
+  background: rgb(25, 70, 138);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.body__1 ,.body__2, .body__3{
+  height: 90%;
+  border-left: #03045E 2px solid;
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.body__1 {
+  align-items: center;
+  border: none;
+}
+
+h3{
+  margin-top: 15px;
+  
+}
+
+span{
+  text-align: center;
+  color: #CAF0F8 ;
+  margin-right: 5px;
+  background:#023E8A ;
+  border-radius: 10px;
+  padding: 5px;
+  
+}
+
+.title__header{
+  color: #023E8A;
+}
+
+.Profil__button{
+  color: #03045E;
+  background: #CAF0F8 ;
+  border: 1px solid #03045E;
+  margin-left: 8px;
+}
