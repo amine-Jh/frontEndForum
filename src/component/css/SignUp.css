@@ -17,17 +17,26 @@ background:  var(--bg) ;
 height: 100vh;
 }
 
-.signup__body  >h1{
+.signup__body  >h1 {
 color: var(--text) ;
-margin-bottom: 5%;
 
+font-size: 3vw;
+}
+
+h2{
+    font-size: 2vw;
+    color: var(--text) ;
+   
+     
 }
 
 .signup__body  >h1>span{
-    font-weight: lighter;
+    font-weight: 100;
+    background: none;
+    color: var(--text)  ;
 }
 
-Input,select{
+Input,select,textarea{
     outline-style: none;
     border: none;
     background: var(--bg_input);
@@ -63,14 +72,18 @@ button{
 .register__form{
     background: var(--container);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around ;
     align-items: center;
     padding: 5%;
+    flex-wrap: wrap;
     border-radius: 50px;
     mix-blend-mode: normal;
 box-shadow: 6px 4px 4px rgba(0, 0, 0, 0.25);
+
 }
 .signup__container{
    padding: 12px;
-   width: 60%;
+  width: 60vw;
+  
+   
 }

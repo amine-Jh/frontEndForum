@@ -4,23 +4,16 @@ import { useHistory } from "react-router";
 import Form from "react-validation/build/form";
 import Input from 'react-validation/build/input';
 import CheckButton from "react-validation/build/button";
-import {isEmail} from "validator";
+
 import AuthService from "../services/auth.service";
 import "./css/Login.css"
 import   svg  from "./images/loginhome.svg"
-import form from 'react-validation/build/form';
 
-
-
-
-
-
-    
 const Login = (props) => {
   let forml=null;
-  const [emailvalue,setEmail]=useState("");
+  const [username,setUsername]=useState("");
    const [password,setPassword]=useState("");
-   const [message,setMessage]=useState("");
+   
    const [response,setResponse]=useState("");
    let history=useHistory()
    // handle login submit
@@ -31,12 +24,14 @@ const Login = (props) => {
   
     forml.validateAll();
 
-   AuthService.login(emailvalue,password).then(
+   AuthService.login(username,password).then(
       res=>{  
+       
         if(res.message)
          setResponse(res)
          else
-       history.push("/home");
+         history.push("/home");
+         window.location.reload();
       
       
       }
@@ -53,28 +48,10 @@ const Login = (props) => {
          </div>);
     }
   };
-  const email = (value) => {
-    if (!isEmail(value)) {
-      return (
-        <div className="alert" role="alert">
-          entrer un email
-        </div>
-      );
-    }
-  };
+ 
   return (
     <div  className="login" >
-      <header> 
-        <div className="left__header">
-          ENSAKFORUM
-        </div>
-        <div className="right__header">
-          <ul>
-            <li> <a href="#">S'inscrire</a>  </li>
-            <li  className="login__buton" > <a href="#">Se connecter</a>  </li>
-          </ul>
-        </div>
-      </header>
+     
       
       <div  className="login__body" >
         <div className="login__container">
@@ -83,7 +60,7 @@ const Login = (props) => {
       <Form   ref={e =>{  forml=e }  }  className="login__form" onSubmit={ e=>handleLogin(e)}>
       <h1 className="title" >  Connexion </h1>
      
-      <Input className="input"  placeholder="Email" type="text" name="email" value={emailvalue} onChange={e=>setEmail(e.target.value)} validations={[required,email]} />
+      <Input className="input"  placeholder="Username" type="text" name="username" value={username} onChange={e=>setUsername(e.target.value)} validations={[required]} />
       <Input  className="password" placeholder="mot de passe" type="password" name="password" value={password} onChange={e=>setPassword(e.target.value)} validations={[required]}  />
      <br/>
      
@@ -96,7 +73,7 @@ const Login = (props) => {
             )}
      <CheckButton  className="button" > Se connecter</CheckButton>
     </Form>
-
+       
       </div>
       </div>
       

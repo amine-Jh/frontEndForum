@@ -1,13 +1,11 @@
-import Login from "./component/Login"
-import ProfilStudent from "./component/ProfilStudent"
-import SignupStudent from "./component/SignupStudent"
+import Header from "./component/Header";
+import Home from "./component/Home";
 
 function App(props) {
   return (
     <div className="App">
-      <SignupStudent/>
-      <Login/>
-      <ProfilStudent/>
+      <Header/>
+      
     </div>
   );
 }
