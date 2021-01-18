@@ -50,7 +50,33 @@ function () {
     value: function getAllCompanies() {
       return _axios["default"].get(API_URL + 'companies', {
         headers: (0, _authHeader["default"])()
+      }).then(function (e) {
+        return e.data;
       });
+    }
+  }, {
+    key: "postuler",
+    value: function postuler(id, ids) {
+      var user = _axios["default"].post(API_URL + "postuler/" + id + "/company/" + ids, {}, {
+        headers: (0, _authHeader["default"])()
+      }).then(function (r) {
+        console.log("rrrr", r.data.companies);
+        return r;
+      });
+
+      return user;
+    }
+  }, {
+    key: "depostuler",
+    value: function depostuler(id, ids) {
+      var user = _axios["default"].post(API_URL + "depostuler/" + id + "/company/" + ids, {}, {
+        headers: (0, _authHeader["default"])()
+      }).then(function (r) {
+        console.log("rrrr", r.data.companies);
+        return r;
+      });
+
+      return user;
     }
   }, {
     key: "deleteMyProfileStudent",

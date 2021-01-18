@@ -27,8 +27,33 @@ class UserService {
 
 
   getAllCompanies() {
-    return axios.get(API_URL +'companies', { headers: authHeader() });
+    return axios.get(API_URL +'companies', { headers: authHeader() }).then(e=> 
+      {return e.data }
+) ;
   }
+
+  postuler(id,ids){
+    
+   let user=
+    axios.post(API_URL+"postuler/"+id+"/company/"+ids,{},{ headers: authHeader()}).then
+    ( r=>  {console.log("rrrr",r.data.companies) 
+      return r;
+})
+return user;
+   
+  }
+
+  depostuler(id,ids){
+    
+    let user=
+     axios.post(API_URL+"depostuler/"+id+"/company/"+ids,{},{ headers: authHeader()}).then
+     ( r=>  {console.log("rrrr",r.data.companies) 
+       return r;
+ })
+ return user;
+    
+   }
+
 
   deleteMyProfileStudent(id){
     axios.delete(API_URL+'etudiants/'+id,{ headers: authHeader() } )

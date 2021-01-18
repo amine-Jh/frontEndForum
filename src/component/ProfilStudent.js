@@ -12,16 +12,32 @@ const ProfilStudent = () => {
     const [UserInfo,SetUserinfo]=useState({});
     const id=authHeader.getCurrentUser().id;
     let history=useHistory();
-   
+    console.log("all you need is here",UserInfo);
     
   useEffect(() => {
        
        
        UserService.getUserInfoStudent(id).then(
             res=> { 
-                SetUserinfo (res.data) } ); 
-       });
+                
+                SetUserinfo(res.data) } ); 
+               
+               
+       } ,[id]);
+
+       const postuler=()=>{
+        UserService.postuler(id,17).then(  e=>SetUserinfo(e.data) )
+    }
+
+    const depostuler=()=>{
+        UserService.depostuler(id,25).then( res=>  SetUserinfo(res.data));
+        
+    }
     
+    
+
+
+
        const deleteprofile=()=>{
           let verify=prompt("press d si tu veux supprimer")
           console.log(verify)
@@ -64,7 +80,7 @@ const ProfilStudent = () => {
                     <button  className="Profil__button"   >Modifier le profile</button>
                     <button onClick={()=>deleteprofile()}  className="Profil__button" >Supprimer le profile</button>
                     <button  className="Profil__button" > imprimer le badge </button>
-                    <button  className="Profil__button" >Voir les entreprises</button>
+                    <button  onClick={ ()=>depostuler() } className="Profil__button" >Voir les entreprises</button>
            </div>
 
             
