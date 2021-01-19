@@ -115,7 +115,7 @@ const SignupEntrep = () => {
         
     </Select>
     
-                        <CheckButton  ref={c => {btn = c;}} > S'inscrire </CheckButton>
+                        <CheckButton className="button"  ref={c => {btn = c;}} > S'inscrire </CheckButton>
                     </div>
                     </Form>
     <h2  className="message" >  {message.message } </h2>

@@ -19,8 +19,6 @@ let btn;
   
   const [password,setPassword]=useState("");
   const [username,setUsername]=useState("");
-  
-
   const [telephone,setTelephone]=useState("");
   const [filliere,setFilliere]=useState("");
   const [annee,setAnnee]=useState("");
@@ -33,7 +31,8 @@ let btn;
     forml.validateAll();
     if (btn.context._errors.length === 0) {
     AuthService.signupStuent(name,password,telephone,emailv,annee,filliere,username)
-    .then(   response=>{ setMessage(response) 
+    .then(   response=>{  console.log(response)
+      setMessage(response) 
             if(   response.message.startsWith("Welcome") ){
               history.push("/login");
               window.location.reload();
@@ -110,7 +109,7 @@ let btn;
     <option value='RST'>G.RST</option>
 </Select>
 
-                    <CheckButton  ref={c => {btn = c;}} > S'inscrire </CheckButton>
+                    <CheckButton className="button" ref={c => {btn = c;}} > S'inscrire </CheckButton>
                 </div>
                 </Form>
 <h2  className="message" >  {message.message } </h2>

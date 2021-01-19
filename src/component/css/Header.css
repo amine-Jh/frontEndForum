@@ -33,7 +33,7 @@ flex: 0.6;
    
 
 }
-.login__buton >a{
+.login__buton > .connect_i {
 color: #023E8A !important ;
 }
 

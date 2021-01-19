@@ -36,13 +36,17 @@ return resp;
 
 
 logout() {
-    localStorage.removeItem("user");
+    localStorage.removeItem("user","moredetails");
+    
   }
 
   getCurrentUser() {
     return JSON.parse(localStorage.getItem('user'));
   }
 
+  getCurrentUserDetails(    ){
+    return JSON.parse(localStorage.getItem('moredetails'));
+  }
 
 }
 

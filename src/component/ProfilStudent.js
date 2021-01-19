@@ -12,7 +12,8 @@ const ProfilStudent = () => {
     const [UserInfo,SetUserinfo]=useState({});
     const id=authHeader.getCurrentUser().id;
     let history=useHistory();
-    console.log("all you need is here",UserInfo);
+    localStorage.setItem("moredetails",  JSON.stringify(UserInfo) )
+    console.log("INFO ETUDIANT",UserInfo);
     
   useEffect(() => {
        
@@ -40,7 +41,7 @@ const ProfilStudent = () => {
 
        const deleteprofile=()=>{
           let verify=prompt("press d si tu veux supprimer")
-          console.log(verify)
+          
           if(verify==='d'){
         userData.deleteMyProfileStudent(id)
         authService.logout();

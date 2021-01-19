@@ -36,7 +36,7 @@ class UserService {
     
    let user=
     axios.post(API_URL+"postuler/"+id+"/company/"+ids,{},{ headers: authHeader()}).then
-    ( r=>  {console.log("rrrr",r.data.companies) 
+    ( r=>  {
       return r;
 })
 return user;
@@ -47,7 +47,7 @@ return user;
     
     let user=
      axios.post(API_URL+"depostuler/"+id+"/company/"+ids,{},{ headers: authHeader()}).then
-     ( r=>  {console.log("rrrr",r.data.companies) 
+     ( r=>  {
        return r;
  })
  return user;

@@ -15,7 +15,7 @@ import "./css/Header.css"
 const Header = () => {
     let history=new useHistory();
 
-    
+    console.log("headerrrr")
     const logouts=()=>{  
         authService.logout() ;
       history.push("/home");
@@ -52,16 +52,16 @@ const Header = () => {
            
            { !isAuth &&
             <ul>
-            <Link className="link" to={"/signupstudent"} > <a href="#">S'inscrire Etudiant</a>  </Link>
-            <Link className="link" to={"/signupCompany"} > <a href="#">S'inscrire Entreprise </a>  </Link>
-            <Link  className="link" to={"/login"} className="login__buton" > <a href="#">Se connecter</a>  </Link>
+            <Link className="link" to={"/signupstudent"} > <div href="#">S'inscrire Etudiant</div>  </Link>
+            <Link className="link" to={"/signupCompany"} > <div href="#">S'inscrire Entreprise </div>  </Link>
+            <Link  className="link" to={"/login"} className="login__buton" > <div  className="connect_i" >Se connecter</div>  </Link>
          </ul>
            }
            { isCompany &&
             <ul>
-           <li onClick={ logouts } className="link"  ><a href="">logout</a> </li>
-           <Link  className="link"  to={"/entreprises"} > <a href="#">Entreprises</a>  </Link>
-           <Link className="link" to={"/ProfilEntreprise"}  className="login__buton" > <a href="#">Voir Profil</a> 
+           <li onClick={ logouts } className="link"  ><div href="">logout</div> </li>
+           <Link  className="link"  to={"/entreprises"} > <div href="#">Entreprises</div>  </Link>
+           <Link className="link" to={"/ProfilEntreprise"}  className="login__buton" > <div className="connect_i"  href="#">Voir Profil</div> 
             </Link>
          </ul>
            }
@@ -69,8 +69,8 @@ const Header = () => {
             { isStudent &&
             <ul>
             <li className="link" onClick={ logouts }  > logout</li>
-           <Link className="link" to={"/ProfilStudent"} > <a href="#"> {authHeader.getCurrentUser().name}  </a>  </Link>
-           <Link className="link" to={"/entreprises"}  className="login__buton" > <a href="#"> list entreprises</a> 
+           <Link className="link" to={"/ProfilStudent"} > <div href="#"> {authHeader.getCurrentUser().name}  </div>  </Link>
+           <Link className="link" to={"/entreprises"}  className="login__buton" > <div href="#"> list entreprises</div> 
             </Link>
          </ul>
            }

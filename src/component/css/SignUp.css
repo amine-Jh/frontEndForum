@@ -47,8 +47,9 @@ Input,select,textarea{
     border: 1px solid var(--text);
 }
 
+form>
 button{
-    outline-style: none;
+    outline: none;
     border: none;
     background: #023E8A;
     border-radius: 12px;
@@ -58,8 +59,6 @@ button{
     margin-top: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     cursor: pointer;
-    
-
 }
 
 .signup__body{

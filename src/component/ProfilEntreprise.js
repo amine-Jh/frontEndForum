@@ -22,13 +22,12 @@ const ProfilEntreprise = () => {
     const [UserInfo,SetUserinfo]=useState({});
     let history=useHistory()
     let id=authHeader.getCurrentUser().id;
-     
+    
+     function hello()  {
+    console.log("hiiii")
+     }
 useEffect(() => {
-      
-     
-
-     
-       UserService.getUserInfoCompany(id).then(
+        UserService.getUserInfoCompany(id).then(
            res=> { 
                SetUserinfo (res.data) } ); 
       
@@ -39,7 +38,7 @@ useEffect(() => {
    
     const deleteprofile=()=>{
         let verify=prompt("press d si tu veux supprimer")
-        console.log(verify)
+        
         if(verify==='d'){
       UserService.deleteMyProfileCompany(id)
       authService.logout();
@@ -77,7 +76,7 @@ useEffect(() => {
           </div>
 
           <div className="Profil__buttons">
-                   <button  className="Profil__button"   >Modifier le profile</button>
+                   <button onClick={()=>hello()   } className="Profil__button"   >Modifier le profile</button>
                    <button  onClick={()=>deleteprofile()} className="Profil__button" >Supprimer le profile</button>
                    <button onClick={ ()=> print() } className="Profil__button" > imprimer le badge </button>
                    <button   className="Profil__button" >Voir les entreprises</button>
