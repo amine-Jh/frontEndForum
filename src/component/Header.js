@@ -11,11 +11,13 @@ import SignupStudent from './SignupStudent'
 import EntreprisesList from './EntreprisesList'
 import authService from '../services/auth.service'
 import "./css/Header.css"
+import userData from '../services/user-data';
+import ListStudent from './ListStudent';
 
 const Header = () => {
     let history=new useHistory();
 
-    console.log("headerrrr")
+    
     const logouts=()=>{  
         authService.logout() ;
       history.push("/home");
@@ -29,13 +31,31 @@ const Header = () => {
     const [ isAuth,setAuth ]=useState(false)
     useEffect(()=>{
         if(authHeader.getCurrentUser()){
+          
+          
         setAdmin(authHeader.getCurrentUser().roles.includes("ROLE_ADMIN"))
         setCompany(authHeader.getCurrentUser().roles.includes("ROLE_COMPANY"))
         setStudent(authHeader.getCurrentUser().roles.includes("ROLE_ETUDIANT"))
         setAuth(true);
+          let id=authHeader.getCurrentUser().id
+          if(isCompany){
+            
+            userData.getUserInfoCompany(id).then( r=>
+              localStorage.setItem("moredetails",JSON.stringify(r.data))
+              
+              )
+          }
+          if(isStudent){
+            
+            userData.getUserInfoStudent(id).then( r=> 
+              localStorage.setItem("moredetails",JSON.stringify(r.data) )   )
+          }
         }
+       
     
-    },[])
+    })
+
+    
     
     
 
@@ -48,35 +68,40 @@ const Header = () => {
            ENSAKFORUM
         </Link>
         </div>
-       <div className="right__header">
+       
            
            { !isAuth &&
+           <div className="right__header">
             <ul>
             <Link className="link" to={"/signupstudent"} > <div href="#">S'inscrire Etudiant</div>  </Link>
             <Link className="link" to={"/signupCompany"} > <div href="#">S'inscrire Entreprise </div>  </Link>
             <Link  className="link" to={"/login"} className="login__buton" > <div  className="connect_i" >Se connecter</div>  </Link>
-         </ul>
+         </ul></div>
            }
            { isCompany &&
-            <ul>
-           <li onClick={ logouts } className="link"  ><div href="">logout</div> </li>
-           <Link  className="link"  to={"/entreprises"} > <div href="#">Entreprises</div>  </Link>
+           <div className="right__header2">
+            <ul  className="auth" >
+           
+           <Link  className="link"  to={"/candidats"} > <div href="#">candidats</div> </Link>
            <Link className="link" to={"/ProfilEntreprise"}  className="login__buton" > <div className="connect_i"  href="#">Voir Profil</div> 
             </Link>
-         </ul>
+            <Link onClick={ logouts } className="link"  ><div href="">logout</div> </Link>
+         </ul></div>
            }
             
             { isStudent &&
-            <ul>
-            <li className="link" onClick={ logouts }  > logout</li>
+            <div className="right__header2">
+            <ul  >
+            
            <Link className="link" to={"/ProfilStudent"} > <div href="#"> {authHeader.getCurrentUser().name}  </div>  </Link>
-           <Link className="link" to={"/entreprises"}  className="login__buton" > <div href="#"> list entreprises</div> 
+           <Link className="link" to={"/entreprises"}  className="login__buton" > <div className="connect_i"> list entreprises</div> 
             </Link>
-         </ul>
+            <Link className="link" onClick={ logouts }  > logout</Link>
+         </ul></div>
            }
 
 
-        </div>
+       
      </header>
      
      
@@ -85,6 +110,7 @@ const Header = () => {
             <Route exact path={["/", "/home"]} component={Home} />
             <Route exact path="/login"  component={Login} />
             <Route exact path="/signupCompany" component={SignupEntrep} />
+            <Route exact path="/candidats" component={ListStudent} />
             <Route exact path="/SignupStudent" component={SignupStudent} />
             <Route path="/ProfilStudent" component={ isAuth && ProfilStudent} />
             <Route path="/ProfilEntreprise" component={isAuth && ProfilEntreprise}   />

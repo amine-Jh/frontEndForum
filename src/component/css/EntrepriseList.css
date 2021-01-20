@@ -1,5 +1,5 @@
 .listentreprise{
-    color: #03045E;
+color: #03045E;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -9,11 +9,11 @@ height: 100vh;
 }
 
 .part{
-    
-    border-left: #03045E 2px solid;
+    border-left: #0077B6 2px solid;
     padding: 1%;
     display: flex;
-    width: 30%;
+    justify-content: space-between;
+    width: 40%;
     flex-direction: column;
     align-items: flex-start;
   }
@@ -22,12 +22,11 @@ height: 100vh;
 .entreprisesList__body{
     display: flex;
     justify-content: space-around;
-    flex-wrap: wrap !important ;
-    width: 74vw;
-    padding: 1%;
+    width: 80vw;
+   padding: 2%;
     margin: 1%;
     background: linear-gradient(180.26deg, #ADE8F4 16.82%, #ADE8F4 43.26%, #ADE8F4 62.96%, #D2F2F9 92.52%, #CCF1F8 99.77%, #DBF5FA 99.78%);
-    border: #03045E  solid 2px ;
+    border: #0077B6  solid 2px ;
     border-radius: 25px;
     align-items: center;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -42,26 +41,22 @@ height: 100vh;
 }
 
 
-.part >
+ 
 h3 {
-    width: auto;
-    
-   display: flex;
-   justify-content: flex-start;
-   align-items: center;
+    width: 100%;
+    display: flex;
+   justify-content: space-between;
    font-size: 16px;
 }
-.part >
+
 h3  >span {
     text-align: center;
-    
     margin-right: 2%;
     color: #CAF0F8 ;
-     background:  #03045E ;
-    border-radius: 10px;
+    width: 26%;
+    background:  #0077B6;
+    border-radius: 12px;
     padding: 2px;
-    width: 140px;
-    
 }
 
 .postuler{

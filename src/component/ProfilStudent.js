@@ -12,7 +12,7 @@ const ProfilStudent = () => {
     const [UserInfo,SetUserinfo]=useState({});
     const id=authHeader.getCurrentUser().id;
     let history=useHistory();
-    localStorage.setItem("moredetails",  JSON.stringify(UserInfo) )
+    
     console.log("INFO ETUDIANT",UserInfo);
     
   useEffect(() => {
@@ -20,15 +20,11 @@ const ProfilStudent = () => {
        
        UserService.getUserInfoStudent(id).then(
             res=> { 
+                SetUserinfo(res.data)
                 
-                SetUserinfo(res.data) } ); 
-               
-               
-       } ,[id]);
+            }); 
+         } ,[id]);
 
-       const postuler=()=>{
-        UserService.postuler(id,17).then(  e=>SetUserinfo(e.data) )
-    }
 
     const depostuler=()=>{
         UserService.depostuler(id,25).then( res=>  SetUserinfo(res.data));
@@ -50,12 +46,23 @@ const ProfilStudent = () => {
         }
 
        }
-           return (<div className="body__profil" >
+           return (
+               <div className="profil__container">
+                   
+           <div className="body__profil" >
+               
+            <div className="Profil__buttons">
+                    <button  className="Profil__button"   >Modifier le profile</button>
+                    <button onClick={()=>deleteprofile()}  className="Profil__button" >Supprimer le profile</button>
+                    <button  className="Profil__button" > imprimer le badge </button>
+                    <button  onClick={ ()=>depostuler() } className="Profil__button" >Voir les entreprises</button>
+           </div>
         <div  className="Profil__student"  >
            
-            <h1  className="title__header" >  Hello { UserInfo.name } </h1>
-           
+            
+           <h1 className="title__header" >  Mon Profile </h1>
            <div className="Profil__student__body">
+           
                     <div className="body__1">
                         <div className="cercle">
                            
@@ -77,15 +84,10 @@ const ProfilStudent = () => {
 
            </div>
 
-           <div className="Profil__buttons">
-                    <button  className="Profil__button"   >Modifier le profile</button>
-                    <button onClick={()=>deleteprofile()}  className="Profil__button" >Supprimer le profile</button>
-                    <button  className="Profil__button" > imprimer le badge </button>
-                    <button  onClick={ ()=>depostuler() } className="Profil__button" >Voir les entreprises</button>
-           </div>
+         
 
             
-        </div></div>
+        </div></div></div>
     )
 }
 

@@ -19,10 +19,8 @@ const Login = (props) => {
    // handle login submit
    const handleLogin=(e)=>{
     e.preventDefault();
-    
-    console.log(forml.getValues()) // will succesfully output 
-  
-    forml.validateAll();
+    // will succesfully output 
+  forml.validateAll();
 
    AuthService.login(username,password).then(
       res=>{  

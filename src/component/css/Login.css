@@ -11,7 +11,7 @@ height: 100vh;
    display: flex;
    align-items: center;
    justify-content: center;
-   height: 100%;
+   height: 85%;
    width: 100%;
  
     }
@@ -37,9 +37,10 @@ width: 85%;
     box-shadow: 6px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.input,  .password {
+.input,  .password ,select{
 border-radius: 25px;
 border-style: none;
+color: #023E8A;
 padding: 8px;
 margin-top: 20px;
 outline-style: none;

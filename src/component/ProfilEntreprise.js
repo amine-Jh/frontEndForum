@@ -4,17 +4,12 @@ import React, {  useEffect, useState } from 'react';
 import UserService from '../services/user-data'
 import authHeader from "../services/auth.service"
 import "./css/ProfilStudent.css"
-import "./css/Login.css"
+
 import authService from '../services/auth.service';
 import { useHistory } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 
-var print = ()=> {
 
-    let element =document.getElementById("badge");
-    
-   
-}
 
 
 
@@ -23,18 +18,11 @@ const ProfilEntreprise = () => {
     let history=useHistory()
     let id=authHeader.getCurrentUser().id;
     
-     function hello()  {
-    console.log("hiiii")
-     }
 useEffect(() => {
         UserService.getUserInfoCompany(id).then(
            res=> { 
                SetUserinfo (res.data) } ); 
-      
-
-     
-   
-    }, []);
+       },[]);
    
     const deleteprofile=()=>{
         let verify=prompt("press d si tu veux supprimer")
@@ -47,11 +35,18 @@ useEffect(() => {
       }
 
      }
-          return (<div className="body__profil" >
-             
+          return (
+              <div className="profil__container">
+          <div className="body__profil" >
+          <div className="Profil__buttons">
+                   <button  className="Profil__button"   >Modifier le profile</button>
+                   <button  onClick={()=>deleteprofile()} className="Profil__button" >Supprimer le profile</button>
+                   <button  className="Profil__button" > imprimer le badge </button>
+                   <button   className="Profil__button" >Voir les entreprises</button>
+          </div>
        <div  className="Profil__student"  >
           
-           <h1  className="title__header" >  Hello { UserInfo.name } </h1>
+           <h1  className="title__header" > votre profile </h1>
           
           <div   id="badge" className="Profil__student__body">
                    <div className="body__1">
@@ -75,16 +70,11 @@ useEffect(() => {
 
           </div>
 
-          <div className="Profil__buttons">
-                   <button onClick={()=>hello()   } className="Profil__button"   >Modifier le profile</button>
-                   <button  onClick={()=>deleteprofile()} className="Profil__button" >Supprimer le profile</button>
-                   <button onClick={ ()=> print() } className="Profil__button" > imprimer le badge </button>
-                   <button   className="Profil__button" >Voir les entreprises</button>
-          </div>
+        
 
            
        </div>
-       
+       </div>
        </div>
    )
 }

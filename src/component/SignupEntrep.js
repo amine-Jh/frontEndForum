@@ -29,7 +29,15 @@ const SignupEntrep = () => {
       
       const [emailv,setEmail]=useState("");
       let history=new useHistory();
-    
+
+      const vPhone=value=>{
+        const re = /^[0-9\b]+$/;
+        if(!re.test(value))
+        return <div className="alert" >  entrer un nombre valide </div>
+        
+      }
+
+
       const handleLogin=(e)=>{
         e.preventDefault();
        
@@ -51,8 +59,10 @@ const SignupEntrep = () => {
     
     
       const vpassword = value => {
-        if (value.length < 6 || value.length > 40) 
-          return(<span className="alert" > The password must be between 6 and 40 characters.</span>);
+        if (value.length < 6 || value.length > 30) 
+          return(<div className="alert"  >
+            password entre 6 et 20 caractéres
+            </div>);
          
         
       };
@@ -92,7 +102,7 @@ const SignupEntrep = () => {
                 
                     <div className="left__form" >
                         <Input validations={[required]} type="text" name="name" placeholder="Nom"    onChange={e=>setName(e.target.value)}  />
-                        <Input validations={[required]} type="tel" name="telephone" placeholder="telephone"    onChange={e=>setTelephone(e.target.value)} />
+                        <Input validations={[required,vPhone]} type="tel" name="telephone" placeholder="telephone"    onChange={e=>setTelephone(e.target.value)} />
                         <Input validations={[required,email]}  type="email" name="email" placeholder="email"   onChange={e=>{ setEmail(e.target.value) } }  />
                         <Input validations={[required,vpassword]} type="password" name="password"   placeholder="mot de passe" onChange={e=>setPassword(e.target.value)}  />
                     </div>
@@ -122,6 +132,7 @@ const SignupEntrep = () => {
     
             
               </div>
+              
           </div>
         </div>
       )

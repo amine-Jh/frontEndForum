@@ -6,7 +6,11 @@ class AuthService {
     login(username, password){
       const resp= axios.post(URL+"signin",{username,password})
         .then(  response=> {  if(response.data.token){
-        localStorage.setItem("user",JSON.stringify(response.data)); }
+        localStorage.setItem("user",JSON.stringify(response.data));
+
+         
+      
+      }
         return response.data
     });
     
@@ -36,7 +40,8 @@ return resp;
 
 
 logout() {
-    localStorage.removeItem("user","moredetails");
+    localStorage.removeItem("user");
+    localStorage.removeItem("moredetails");
     
   }
 
@@ -44,10 +49,10 @@ logout() {
     return JSON.parse(localStorage.getItem('user'));
   }
 
-  getCurrentUserDetails(    ){
-    return JSON.parse(localStorage.getItem('moredetails'));
+  getCurrentUserDetails( ){
+    return JSON.parse(localStorage.getItem('moredetails'))
+    
   }
-
 }
 
 export default  new AuthService();

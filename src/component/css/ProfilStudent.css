@@ -1,6 +1,16 @@
-.body__profil{
-  height: 100vh;
+.profil__container{
   background: #CAF0F8;
+  height: 100vh;
+ 
+}
+.body__profil{
+  background: #CAF0F8;
+  display: flex;
+  padding: 1%;
+  width: 80%;
+  
+  align-items: flex-start;
+  justify-content: space-around;
 }
 .Profil__student{
   
@@ -10,14 +20,16 @@
     justify-content: center;
     align-items: center;
     height: 80%;
+    
 }
 .Profil__student__body{
 display: flex;
-width: 80vw;
+flex-direction: column;
+border: 2px solid #023E8A;
+width: 40vw;
 background: #CAF0F8;
-border: #03045E  solid 2px ;
+padding: 2%;
 border-radius: 25px;
-align-items: center;
 box-shadow: 0px 4px 4px #03055e4d, 0px 4px 4px rgba(0, 0, 0, 0.25);
 
 
@@ -31,22 +43,27 @@ box-shadow: 0px 4px 4px #03055e4d, 0px 4px 4px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.body__1 ,.body__2, .body__3{
-  height: 90%;
-  border-left: #03045E 2px solid;
-  padding: 5%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
+
 
 .body__1 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  border: none;
+  margin: 1%;
+  
 }
 
+h3 >span{
+  width: 40%;
+}
 h3{
   margin-top: 15px;
+  display: flex;
+  width: 100%;
+  
+  justify-content: space-between;
+  align-items: flex-start;
   
 }
 
@@ -62,23 +79,28 @@ span{
 
 .title__header{
   color: #023E8A;
+  padding: 12px;
+  letter-spacing: 1px;
+
 }
 
 .Profil__buttons{
   display: flex;
-  justify-content: space-between;
-  width: 80%;
+  flex-direction: column;
+  
+  width: 20%;
   padding: 2%;
 }
 .Profil__button{
   color: #03045E;
   background: #CAF0F8 ;
-  border: 2px solid #03045E;
-  margin-left: 8px;
+  border: 1px solid #03045E;
+  margin: 7px;
   font-weight: 700;
   outline: none;
   box-shadow: 0px 4px 4px #03045E ;
   padding: 1%;
+  
   border-radius: 12px;
   cursor: pointer;
 }
