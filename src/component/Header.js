@@ -53,9 +53,24 @@ const Header = () => {
               localStorage.setItem("moredetails",JSON.stringify(r.data) )   )
           }
         }
-       
-    
     })
+
+    const open=(e)=>{
+      let nav=document.getElementById("nav")
+
+      if(e.target.classList.contains("rotate"))
+     { 
+       e.target.classList.remove("rotate")
+      nav.classList.remove("open")
+      nav.classList.add("right__header__phone")
+    }
+      else
+      {
+        e.target.classList.add("rotate")
+        nav.classList.add("open")
+        nav.classList.remove("right__header__phone")
+      }
+    }
 
     
     
@@ -64,25 +79,29 @@ const Header = () => {
 
     return (
         <div>
-            <header> 
-       <div className="left__header">
-       <Link className="link" to={"/home"} className="left__header__li">
+        <header> 
+          <div className="left__header">
+          <Link className="link" to={"/home"} className="left__header__li">
            ENSAKFORUM
-        </Link>
-        </div>
+          </Link>
+          </div>
        
            
            { !isAuth &&
            <div className="right__header">
-            <ul>
+            <ul  className="right__header__desktop"  >
             <Link className="link" to={"/signupstudent"} > <div href="#">S'inscrire Etudiant</div>  </Link>
             <Link className="link" to={"/signupCompany"} > <div href="#">S'inscrire Entreprise </div>  </Link>
             <Link  className="link" to={"/login"} className="login__buton" > <div  className="connect_i" >Se connecter</div>  </Link>
-         </ul></div>
+           
+           </ul>
+          
+           
+         </div>
            }
            { isCompany &&
            <div className="right__header2">
-            <ul  className="auth" >
+            <ul  className="auth   right__header__desktop" >
            
            <Link  className="link"  to={"/candidats"} > <div href="#">candidats</div> </Link>
            <Link className="link" to={"/ProfilEntreprise"}  className="login__buton" > <div className="connect_i"  href="#">Profile </div> 
@@ -93,7 +112,7 @@ const Header = () => {
             
             { isStudent &&
             <div className="right__header2">
-            <ul >
+            <ul  className=" auth right__header__desktop" >
            
            <Link className="link" to={"/ProfilStudent"} > <div href="#"> {authHeader.getCurrentUser().name} <i class="fas fa-user"></i> </div>  </Link>
            <Link className="link" to={"/entreprises"}  className="login__buton" > <div className="connect_i"> list entreprises <i class="far fa-building"></i> </div> 
@@ -102,9 +121,47 @@ const Header = () => {
          </ul></div>
            }
 
-
+            <div  onClick={(e)=>open(e)}  className="bar" >
+            <i  class="fas fa-bars bar"></i>
+            </div>
        
      </header>
+      
+         { !isAuth &&
+           <div className="right__header__phone "  id="nav" >
+            <ul  className="phone__navbar"  >
+            <Link className="link__phone" to={"/signupstudent"} > <div >S'inscrire Etudiant</div>  </Link>
+            <Link className="link__phone" to={"/signupCompany"} > <div >S'inscrire Entreprise </div>  </Link>
+            <Link  className="link__phone" to={"/login"}  > <div   >Se connecter</div>  </Link>
+           
+           </ul>
+          
+           </div>
+           }  
+           { isCompany &&
+           <div className="right__header__phone "  id="nav" >
+            <ul  className="phone__navbar" >
+           
+           <Link  className="link__phone"  to={"/candidats"} > <div href="#">candidats</div> </Link>
+           <Link className="link__phone" to={"/ProfilEntreprise"}   > <div className="connect_i"  href="#">Profile </div> 
+            </Link>
+            <Link onClick={ logouts } className="link__phone"  ><div href="">logout</div> </Link>
+         </ul></div>
+           }
+
+{ isStudent &&
+            <div className="right__header__phone"   id="nav">
+            <ul  className="phone__navbar" >
+           
+           <Link className="link__phone" to={"/ProfilStudent"} > <div href="#"> {authHeader.getCurrentUser().name} <i class="fas fa-user"></i> </div>  </Link>
+           <Link className="link__phone" to={"/entreprises"}  > <div > list entreprises <i class="far fa-building"></i> </div> 
+            </Link>
+            <Link className="link__phone" onClick={ logouts }  > logout <i class="fas fa-sign-out-alt"></i></Link>
+         </ul></div>
+           }
+           
+    
+
      
      
      <Switch>

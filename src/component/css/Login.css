@@ -81,7 +81,13 @@ width: 250px;
 
    @media only screen and (max-width: 800px) {
    .login__container >img{
-      width: 50vw;
-      padding: 5vw;
+      width: 60vw;
+      
     }
+
+    .login__form{
+      width: 100%;
+    }
+
+
   }

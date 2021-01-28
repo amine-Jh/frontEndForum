@@ -19,6 +19,10 @@ header{
     text-decoration: none;
 }
 
+.right__header__phone{
+    display: none;
+}
+
 .right__header2{
 flex: 0.4;
 }
@@ -27,7 +31,7 @@ flex: 0.4;
     }
 
 
-.login__buton {
+.login__buton   {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background:#023E8A ;
     color:   #ADE8F4   ;
@@ -35,9 +39,23 @@ flex: 0.4;
     font-size: 16px;
    text-align: center;
    padding: 6px;
+   }
+   .bar{
+    display: none;
+    background:#023E8A ;
+    color:   #ADE8F4   ;
+    border-radius: 2px;
+    font-size: 16px;
+    padding: 4px;
+   text-align: center;
+   outline: none;
+   box-shadow: unset !important;
    
+  
+   }
 
-}
+
+
 .login__buton > .connect_i {
 color: #ADE8F4  ;
 }
@@ -69,4 +87,57 @@ ul >.link {
    font-size: 16px;
     color: #023E8A;
     margin-left: 1%;
+}
+.open{
+    
+    display: flex ;
+    justify-content: start;
+    width: 100vw;
+    background: #44A4CF;
+    height: 100%  ;
+    opacity: 1;
+}
+
+.rotate{
+    transform: rotate(90deg);
+}
+
+@media screen and (max-width: 600px){
+    .right__header__desktop{
+    display: none;
+}
+
+.right__header__phone{
+    display: none  ;    }
+    
+
+.phone__navbar
+{
+ display: flex;
+ flex-direction: column;
+ width: 100%;
+ transition-timing-function:ease;
+
+ 
+    
+}
+.phone__navbar >.link__phone {
+background: #44A4CF ;
+padding: 5px;
+width: 70%;
+color: #023E8A;
+font-weight: 600;
+text-align: start;
+border-bottom: #023E8A 1px solid;
+
+}
+
+.bar{
+    display: block;
+}
+
+    .left__header__li{
+        font-size: 20px;
+    }
+   
 }
