@@ -26,15 +26,19 @@ const Login = (props) => {
       res=>{  
        
         if(res.message)
-         setResponse(res)
-         else
+         setResponse(res.message)
+       else{
          history.push("/home");
-         window.location.reload();
+         window.location.reload();}
       
       
       }
    
-   ).catch(  e=> console.log("error",e)  )
+   ).catch(  e=> { if(e){
+     
+          setResponse("données incorrectes")
+         
+   }  }  )
   }
 
 
@@ -56,16 +60,16 @@ const Login = (props) => {
         <img src={svg} alt="svg"/>
 
       <Form   ref={e =>{  forml=e }  }  className="login__form" onSubmit={ e=>handleLogin(e)}>
-      <h1 className="title" >  Connexion </h1>
+      <h1 className="title" >  Se Connecter </h1>
      
       <Input className="input"  placeholder="Username" type="text" name="username" value={username} onChange={e=>setUsername(e.target.value)} validations={[required]} />
       <Input  className="password" placeholder="mot de passe" type="password" name="password" value={password} onChange={e=>setPassword(e.target.value)} validations={[required]}  />
      <br/>
      
-     {response.message && (
+     {response && (
               <div className="form-group">
                 <div className="alert alert-danger" role="alert">
-                  {response.message}
+                  {response}
                 </div>
               </div>
             )}

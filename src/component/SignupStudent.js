@@ -33,7 +33,7 @@ let btn;
     AuthService.signupStuent(name,password,telephone,emailv,annee,filliere,username)
     .then(   response=>{  console.log(response)
       setMessage(response) 
-            if(   response.message.startsWith("Welcome") ){
+            if( response.message.startsWith("Welcome") ){
               history.push("/login");
               window.location.reload();
             }

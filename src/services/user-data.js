@@ -11,16 +11,25 @@ class UserService {
   getUserInfoStudent(id) {
 
     return axios.get(API_URL + 'etudiants/'+id, { headers: authHeader() })
-    
-    
-  }
+    }
 
   getUserInfoCompany(id) {
 
     return axios.get(API_URL + 'companies/'+id, { headers: authHeader() })
+    }
+
+
+    updateStudent(id,annee,telephone,email,filliere,name,password){
+      return axios.put( API_URL+'etudiants/'+id, {name,email,telephone,annee,filliere,password
+      
+      } ,{headers :authHeader()})
+    }
     
-    
-  }
+    updateCompany(id,type,telephone,email,adresse,name,password){
+    return axios.put( API_URL+'companies/'+id, {name,email,telephone,adresse,type,password
+      
+      } ,{headers :authHeader()})
+    }
 
 
 

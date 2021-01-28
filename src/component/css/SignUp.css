@@ -4,6 +4,7 @@
 --bg : #DBF5FA ;
 --bg_input: #ADE8F4;
 
+
 }
 
 .message{
@@ -13,7 +14,7 @@
 }
 
 .signup{
-background:  var(--bg) ;
+background: linear-gradient(99.35deg, #ADE8F4 0.41%, #44A4CF 97.32%, #0076b6bc 100.54%, rgba(255, 255, 255, 0) 102.28%), #FFFFFF;
 height: 100vh;
 }
 
@@ -39,7 +40,7 @@ h2{
 Input,select,textarea{
     outline-style: none;
     border: none;
-    background: var(--bg_input);
+    background: var(--bg_input) ;
     border-radius: 12px;
     width: 250px;
     padding: 8px;
@@ -69,7 +70,7 @@ button  {
     align-items: center;
 }
 .register__form{
-    background: var(--container);
+    background:linear-gradient(118.34deg, #023E8A 3.33%, rgba(255, 255, 255, 0) 100.09%), #0077B6 ;
     display: flex;
     justify-content: space-around ;
     align-items: flex-start;

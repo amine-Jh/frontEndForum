@@ -1,6 +1,6 @@
 .login{
    width: 100%;
-   background: #DBF5FA;
+   background: linear-gradient(99.35deg, #ADE8F4 0.41%, #44A4CF 97.32%, #0076b6bc 100.54%, rgba(255, 255, 255, 0) 102.28%), #FFFFFF;
 width: auto;
 height: 100vh;
 
@@ -25,7 +25,7 @@ width: 85%;
 }
 
 .login__form{
-     background: #0077B6 ; 
+  background: linear-gradient(118.34deg, #023E8A 3.33%, rgba(255, 255, 255, 0) 100.09%), #0077B6;
      width: 385px;
      display: flex;
      justify-content: space-around;

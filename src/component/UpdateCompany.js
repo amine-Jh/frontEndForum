@@ -1,4 +1,4 @@
-import {React ,useState  }from 'react'
+import {React ,useEffect,useState  }from 'react'
 import Form from "react-validation/build/form";
 import Input from 'react-validation/build/input';
 import Textarea from 'react-validation/build/textarea';
@@ -9,23 +9,35 @@ import "./css/Login.css";
 import "./css/SignUp.css"
 import AuthService from '../services/auth.service';
 import { useHistory } from 'react-router-dom';
+import userData from '../services/user-data';
+import authService from '../services/auth.service';
 
-
-
-
-const SignupEntrep = () => {
+const UpdateCompany = () => {
     let forml;
     let btn;
       const [name,setName]=useState("");
       const [message,setMessage]=useState("");
       const [password,setPassword]=useState("");
-      const [username,setUsername]=useState("");
       const [adresse,setAdresse]=useState("");
       const [telephone,setTelephone]=useState("");
       const [type,setType]=useState("");
       const [emailv,setEmail]=useState("");
+      const [id,setId]=useState(0);
       let history=new useHistory();
 
+      console.log(name)
+      useEffect(()=>{
+        let user=authService.getCurrentUserDetails();
+        console.log(user)
+        setId(user.id)
+        setType(user.type)
+        setEmail(user.email)
+        setName(user.name)
+        setTelephone(user.telephone)
+        setAdresse(user.adresse)
+       
+        }  
+      ,[])
       const vPhone=value=>{
         const re = /^[0-9\b]+$/;
         if(!re.test(value))
@@ -39,14 +51,20 @@ const SignupEntrep = () => {
        
         forml.validateAll();
         if (btn.context._errors.length === 0) {
-        AuthService.signupCompany(name,password,telephone,emailv,type,adresse,username)
-        .then(   response=>{ setMessage(response) 
-                if(   response.message.startsWith("Welcome") ){
-                  history.push("/login");
-                  
-                  window.location.reload();
-                }
-        })
+        userData.updateCompany(id,type,telephone,emailv,adresse,name,password).
+        then(e=>{
+            if(e.data.message){
+               setMessage(e.data.message)
+            }
+            else{
+                localStorage.setItem("moredetails",JSON.stringify(e.data)) 
+                history.push("/ProfilEntreprise")
+             
+            }
+            
+    
+    } )
+       
         }
        
       
@@ -97,22 +115,10 @@ const SignupEntrep = () => {
                 <Form  ref={  e=>forml=e } onSubmit={e=>handleLogin(e)} className="register__form" >  
                 
                     <div className="left__form" >
-                        <Input validations={[required]} type="text" name="name" placeholder="Nom"    onChange={e=>setName(e.target.value)}  />
-                        <Input validations={[required,vPhone]} type="tel" name="telephone" placeholder="telephone"    onChange={e=>setTelephone(e.target.value)} />
-                        <Input validations={[required,email]}  type="email" name="email" placeholder="email"   onChange={e=>{ setEmail(e.target.value) } }  />
-                        <Input validations={[required,vpassword]} type="password" name="password"   placeholder="mot de passe" onChange={e=>setPassword(e.target.value)}  />
-                    </div>
-                    <div className="right__form" >
-                    
-
-
-                            
-                        <Input type="text" name="username"  onChange={e=>setUsername(e.target.value)}   validations={[required,vusername]} 
-                         placeholder="username"  />
-
-<Textarea name='adresse' validations={[required]} placeholder="adresse"  onChange={e=>setAdresse(e.target.value)} />
-      
-        <Select   name='type' onChange={e=>setType(e.target.value)} validations={[required]}  >
+                        <Input validations={[required]} type="text" name="name" placeholder="Nom" value={name}   onChange={e=>setName(e.target.value)}  />
+                        <Input validations={[required,vPhone]} type="tel" name="telephone" placeholder="telephone" value={telephone}   onChange={e=>setTelephone(e.target.value)} />
+                        <Input validations={[required,email]}  type="email" name="email" placeholder="email" value={emailv}   onChange={e=>{ setEmail(e.target.value) } }  />
+                        <Select   value={type}  name='type' onChange={e=>setType(e.target.value)} validations={[required]}  >
         <option value=''>Type d'entreprise</option>
         <option value='société en nom collectif'>société en nom collectif </option>
         <option value='société en commandité'>société en commandité</option>
@@ -120,11 +126,19 @@ const SignupEntrep = () => {
         <option value='coopérative'>coopérative</option>
         
     </Select>
+                      
+                    </div>
+                    <div className="right__form" >
+                    
+                    
+<Textarea name='adresse' validations={[required]} placeholder="adresse"  value={adresse} onChange={e=>setAdresse(e.target.value)} />
+      
+<Input validations={[required,vpassword]} type="password" name="password"    placeholder="mot de passe" onChange={e=>setPassword(e.target.value)}  />
     
                         <CheckButton className="button"  ref={c => {btn = c;}} > S'inscrire </CheckButton>
                     </div>
                     </Form>
-    <h2  className="message" >  {message.message } </h2>
+    <h2  className="message" >  {message} </h2>
     
             
               </div>
@@ -134,4 +148,4 @@ const SignupEntrep = () => {
       )
 }
 
-export default SignupEntrep
+export default UpdateCompany

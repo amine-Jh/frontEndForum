@@ -8,16 +8,18 @@ import SignupEntrep from './SignupEntrep'
 import ProfilEntreprise from './ProfilEntreprise'
 import ProfilStudent from './ProfilStudent'
 import SignupStudent from './SignupStudent'
+import UpdateStudent from './UpdateStudent'
 import EntreprisesList from './EntreprisesList'
 import authService from '../services/auth.service'
 import "./css/Header.css"
 import userData from '../services/user-data';
 import ListStudent from './ListStudent';
+import UpdateCompany from './UpdateCompany';
 
 const Header = () => {
     let history=new useHistory();
 
-    
+    let id=2
     const logouts=()=>{  
         authService.logout() ;
       history.push("/home");
@@ -83,7 +85,7 @@ const Header = () => {
             <ul  className="auth" >
            
            <Link  className="link"  to={"/candidats"} > <div href="#">candidats</div> </Link>
-           <Link className="link" to={"/ProfilEntreprise"}  className="login__buton" > <div className="connect_i"  href="#">Voir Profil</div> 
+           <Link className="link" to={"/ProfilEntreprise"}  className="login__buton" > <div className="connect_i"  href="#">Profile </div> 
             </Link>
             <Link onClick={ logouts } className="link"  ><div href="">logout</div> </Link>
          </ul></div>
@@ -91,12 +93,12 @@ const Header = () => {
             
             { isStudent &&
             <div className="right__header2">
-            <ul  >
-            
-           <Link className="link" to={"/ProfilStudent"} > <div href="#"> {authHeader.getCurrentUser().name}  </div>  </Link>
-           <Link className="link" to={"/entreprises"}  className="login__buton" > <div className="connect_i"> list entreprises</div> 
+            <ul >
+           
+           <Link className="link" to={"/ProfilStudent"} > <div href="#"> {authHeader.getCurrentUser().name} <i class="fas fa-user"></i> </div>  </Link>
+           <Link className="link" to={"/entreprises"}  className="login__buton" > <div className="connect_i"> list entreprises <i class="far fa-building"></i> </div> 
             </Link>
-            <Link className="link" onClick={ logouts }  > logout</Link>
+            <Link className="link" onClick={ logouts }  > logout <i class="fas fa-sign-out-alt"></i></Link>
          </ul></div>
            }
 
@@ -106,7 +108,7 @@ const Header = () => {
      
      
      <Switch>
-     
+
             <Route exact path={["/", "/home"]} component={Home} />
             <Route exact path="/login"  component={Login} />
             <Route exact path="/signupCompany" component={SignupEntrep} />
@@ -115,6 +117,10 @@ const Header = () => {
             <Route path="/ProfilStudent" component={ isAuth && ProfilStudent} />
             <Route path="/ProfilEntreprise" component={isAuth && ProfilEntreprise}   />
             <Route path="/entreprises" component={ isAuth && EntreprisesList}   />
+             <Route   path={`/student/edit/:id`}  component={UpdateStudent} />
+             <Route   path={`/company/edit/:id`}  component={UpdateCompany} />
+            
+           
             
     </Switch>
     </div>

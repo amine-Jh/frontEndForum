@@ -11,6 +11,7 @@ let id=authService.getCurrentUser().id;
     
 const [companies,setCompanies]=useState([])
 const [isOnline,setIsOnline]=useState(false);
+companies.map( e=>  console.log(e.etudiants)              )
 useEffect( ()=>{
    
     UserService.getAllCompanies().then( e=>{

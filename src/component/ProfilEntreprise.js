@@ -6,7 +6,7 @@ import authHeader from "../services/auth.service"
 import "./css/ProfilStudent.css"
 
 import authService from '../services/auth.service';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 
 
@@ -39,7 +39,7 @@ useEffect(() => {
               <div className="profil__container">
           <div className="body__profil" >
           <div className="Profil__buttons">
-                   <button  className="Profil__button"   >Modifier le profile</button>
+          <Link  className="Profil__Link"  to={`/company/edit/${id}`} >modifier le profile </Link>
                    <button  onClick={()=>deleteprofile()} className="Profil__button" >Supprimer le profile</button>
                    <button  className="Profil__button" > imprimer le badge </button>
                    <button   className="Profil__button" >Voir les entreprises</button>
