@@ -7,30 +7,33 @@ import "./css/ProfilStudent.css"
 import "./css/Login.css"
 import userData from '../services/user-data';
 import authService from '../services/auth.service';
-import { useHistory , useRouteMatch,Link, Switch, Route } from 'react-router-dom';
+import { useHistory ,Link} from 'react-router-dom';
+import uploadService from '../services/upload-service';
 
 const ProfilStudent = () => {
     const [UserInfo,SetUserinfo]=useState({});
+    const [src,setSrc]=useState("");
     const id=authHeader.getCurrentUser().id;
     let history=useHistory();
-   
-    
-  useEffect(() => {
-       
-       
+    useEffect(() => {
        UserService.getUserInfoStudent(id).then(
             res=> { 
-                SetUserinfo(res.data)
-                
-            }); 
-         } ,[id]);
+                SetUserinfo(res.data) 
+                uploadService.getFiles(res.data.photo.id).then(e=>{
+                const objectURL = URL.createObjectURL(e.data)
+                setSrc(objectURL)
+            
+           }
+           )}); 
+               
+     
+            },[id]);
 
-
-
-
+         
+    console.log("hello")
 
        const deleteprofile=()=>{
-          let verify=prompt("press d si tu veux supprimer")
+          let verify=prompt("appuyer sur 'd' si tu veux supprimer")
           
           if(verify==='d'){
         userData.deleteMyProfileStudent(id)
@@ -42,10 +45,8 @@ const ProfilStudent = () => {
        }
            return (
                <div className="profil__container">
-                   
-           <div className="body__profil" >
-               
-            <div className="Profil__buttons">
+                <div className="body__profil" >
+               <div className="Profil__buttons">
             
             <Link  className="Profil__Link"  to={`/student/edit/${id}`} >modifier le profile </Link>
 
@@ -61,7 +62,7 @@ const ProfilStudent = () => {
            
                     <div className="body__1">
                         <div className="cercle">
-                           
+                        <img src={UserInfo.photo?src:""}  className="cercle" alt="hello"/> 
                         </div>
                         <h2> ENSA KENITRA </h2>
                     </div>

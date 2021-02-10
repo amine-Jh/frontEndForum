@@ -10,9 +10,6 @@ import "./css/SignUp.css"
 import AuthService from '../services/auth.service';
 import { useHistory } from 'react-router-dom';
 
-
-
-
 const SignupEntrep = () => {
     let forml;
     let btn;
@@ -30,11 +27,9 @@ const SignupEntrep = () => {
         const re = /^[0-9\b]+$/;
         if(!re.test(value))
         return <div className="alert" >  entrer un nombre valide </div>
-        
       }
 
-
-      const handleLogin=(e)=>{
+const handleLogin=(e)=>{
         e.preventDefault();
        
         forml.validateAll();

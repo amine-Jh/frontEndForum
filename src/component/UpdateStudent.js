@@ -30,7 +30,7 @@ const UpdateStudent = () => {
   
 useEffect(()=>{
     let user=authService.getCurrentUserDetails();
-    
+    console.log(user)
     setId(user.id)
     setAnnee(user.annee)
     setEmail(user.email)

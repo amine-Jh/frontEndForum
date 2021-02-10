@@ -8,6 +8,7 @@ import "./css/Login.css";
 import "./css/SignUp.css"
 import AuthService from '../services/auth.service';
 import { useHistory } from 'react-router-dom';
+import uploadService from '../services/upload-service';
 
 
 
@@ -16,41 +17,58 @@ let forml;
 let btn;
   const [name,setName]=useState("");
   const [message,setMessage]=useState("");
-  
+  const [photo,setPhoto]=useState(null)
   const [password,setPassword]=useState("");
   const [username,setUsername]=useState("");
   const [telephone,setTelephone]=useState("");
   const [filliere,setFilliere]=useState("");
   const [annee,setAnnee]=useState("");
   const [emailv,setEmail]=useState("");
+  const [src,setSrc]=useState(null);
   let history=new useHistory();
 
+  
+ 
   const handleLogin=(e)=>{
     e.preventDefault();
-   
+    
     forml.validateAll();
     if (btn.context._errors.length === 0) {
-    AuthService.signupStuent(name,password,telephone,emailv,annee,filliere,username)
-    .then(   response=>{  console.log(response)
+      
+    AuthService.signupStuent(name,password,telephone,emailv,annee,filliere,username,photo)
+    .then(   response=>{  
       setMessage(response) 
             if( response.message.startsWith("Welcome") ){
               history.push("/login");
               window.location.reload();
-            }
-    })
+            }})
     }
-   
-  
   }
 
 
+ function handlePhoto(e){
+  let file =e.target.files[0]
+  uploadService.upload(file).then(
+    e=> {console.log("tswira",e.data)
+        setPhoto(e.data)
+  }
+  )
+  
+ /* uploadService.getFiles("944b9ca0-c1c8-41db-97ab-79b10d93a83e").then(e=>{
+    
+    const objectURL = URL.createObjectURL(e.data)
+    setPhoto(objectURL)
+   
+  }
+  )*/
+  
+  
+  }
 
   const vpassword = value => {
     if (value.length < 6 || value.length > 40) 
       return(<span className="alert" > The password must be between 6 and 40 characters.</span>);
-     
-    
-  };
+    };
 
     const required = value => {
         if (!value) 
@@ -109,11 +127,17 @@ let btn;
     <option value='RST'>G.RST</option>
 </Select>
 
-                    <CheckButton className="button" ref={c => {btn = c;}} > S'inscrire </CheckButton>
+
+<Input type="file" name="file" onChange={(e)=>handlePhoto(e)}   placeholder="file"  />
+
+                    <CheckButton className="button" ref={c => {btn = c;}} 
+                    
+                    
+                    > S'inscrire </CheckButton>
                 </div>
                 </Form>
 <h2  className="message" >  {message.message } </h2>
-
+<img  src={photo} alt="phot" ></img>
         
           </div>
       </div>

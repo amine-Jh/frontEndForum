@@ -17,13 +17,13 @@ class AuthService {
     return resp;
   }
 // Creat a  new student
-signupStuent(name,password,telephone,email,annee,filliere,username)
-{
+signupStuent(name,password,telephone,email,annee,filliere,username,photo)
+{  console.log("photo dyalna",photo)
   const roles=["etudiant"]
-  const resp= axios.post(URL+"signupStudent",{email,password,name,annee,roles,filliere,username,telephone})
+  const resp= axios.post(URL+"signupStudent",{email,password,name,annee,roles,filliere,username,telephone,photo})
   .then(  response=> {  
 return response.data
-}).catch(  error=>{  <h1> {error} </h1>   })
+})
 return resp;
 }
 // create a new company  Company
@@ -33,7 +33,7 @@ signupCompany(name,password,telephone,email,type,adresse,username)
   const resp= axios.post(URL+"signupCompany",{email,password,name,adresse,type,username,telephone,roles})
   .then(  response=> {  
 return response.data
-}).catch(  error=>{  <h1> {error} </h1>   })
+})
 return resp;
 }
 
