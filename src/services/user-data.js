@@ -1,6 +1,5 @@
 import axios from 'axios';
 import authHeader from './auth-header';
-
 const API_URL = 'http://localhost:8080/resources/';
 
 class UserService {
@@ -9,7 +8,6 @@ class UserService {
   }
 
   getUserInfoStudent(id) {
-
     return axios.get(API_URL + 'etudiants/'+id, { headers: authHeader() })
     }
 
@@ -36,20 +34,17 @@ class UserService {
 
 
   getAllCompanies() {
-    return axios.get(API_URL +'companies', { headers: authHeader() }).then(e=> 
-      {return e.data }
-) ;
-  }
+  return axios.get(API_URL +'companies', { headers: authHeader() },{ responseType: 'blob' })
+
+  } 
 
   postuler(id,ids){
-    
-   let user=
+    let user=
     axios.post(API_URL+"postuler/"+id+"/company/"+ids,{},{ headers: authHeader()}).then
     ( r=>  {
       return r;
 })
 return user;
-   
   }
 
   depostuler(id,ids){

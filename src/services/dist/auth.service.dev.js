@@ -27,12 +27,12 @@ function () {
   _createClass(AuthService, [{
     key: "login",
     //first method for login request
-    value: function login(email, password) {
+    value: function login(username, password) {
       var resp = _axios["default"].post(URL + "signin", {
-        email: email,
+        username: username,
         password: password
       }).then(function (response) {
-        if (response.data.accessToken) {
+        if (response.data.token) {
           localStorage.setItem("user", JSON.stringify(response.data));
         }
 
@@ -40,24 +40,47 @@ function () {
       });
 
       return resp;
-    }
+    } // Creat a  new student
+
   }, {
     key: "signupStuent",
-    value: function signupStuent(name, password, telephone, email, annee, filliere, username) {
+    value: function signupStuent(name, password, telephone, email, annee, filliere, username, photo) {
+      var roles = ["etudiant"];
+
       var resp = _axios["default"].post(URL + "signupStudent", {
         email: email,
         password: password,
         name: name,
         annee: annee,
+        roles: roles,
         filliere: filliere,
         username: username,
-        telephone: telephone
+        telephone: telephone,
+        photo: photo
       }).then(function (response) {
         return response.data;
-      })["catch"](function (error) {
-        if (error) {
-          console.log(error);
-        }
+      });
+
+      return resp;
+    } // create a new company  Company
+
+  }, {
+    key: "signupCompany",
+    value: function signupCompany(name, password, telephone, email, type, adresse, username, photo) {
+      var roles = ["company"];
+
+      var resp = _axios["default"].post(URL + "signupCompany", {
+        email: email,
+        password: password,
+        name: name,
+        adresse: adresse,
+        type: type,
+        username: username,
+        telephone: telephone,
+        roles: roles,
+        photo: photo
+      }).then(function (response) {
+        return response.data;
       });
 
       return resp;
@@ -66,11 +89,17 @@ function () {
     key: "logout",
     value: function logout() {
       localStorage.removeItem("user");
+      localStorage.removeItem("moredetails");
     }
   }, {
     key: "getCurrentUser",
     value: function getCurrentUser() {
       return JSON.parse(localStorage.getItem('user'));
+    }
+  }, {
+    key: "getCurrentUserDetails",
+    value: function getCurrentUserDetails() {
+      return JSON.parse(localStorage.getItem('moredetails'));
     }
   }]);
 

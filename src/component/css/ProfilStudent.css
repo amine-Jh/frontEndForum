@@ -1,21 +1,26 @@
 .profil__container{
-  
-  height: 100vh;
+  min-height: 100vh;
+  max-height: auto;
   background: linear-gradient(99.35deg, #ADE8F4 0.41%, #44A4CF 97.32%, #0077B6 100.54%, rgba(255, 255, 255, 0) 102.28%), #FFFFFF;
- 
 }
 .body__profil{
- 
   display: flex;
   padding: 1%;
   width: 80%;
-  
   align-items: center;
   justify-content: space-around;
 }
+.cercle{
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
 .Profil__student{
   
-    color: #03045E;
+color: #03045E;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,18 +37,7 @@ background: #CAF0F8;
 padding: 4%;
 border-radius: 25px;
 box-shadow: 0px 4px 4px #03055e4d, 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-
 }
-
-.cercle{
-  width: 10vw;
-  height: 10vw;
-  border-radius: 100%;
-  background: rgb(25, 70, 138);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
 
 
 .body__1 {
@@ -62,10 +56,8 @@ h3{
   margin-top: 15px;
   display: flex;
   width: 100%;
-  
   justify-content: space-between;
   align-items: flex-start;
-  
 }
 
 span{
@@ -88,7 +80,6 @@ span{
 .Profil__buttons{
   display: flex;
   flex-direction: column;
-  
   width: 20%;
   padding: 2%;
 }
@@ -117,4 +108,63 @@ span{
   padding: 1%;
   border-radius: 12px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 600px){
+
+  .body__3  >h3 {
+    width: 100%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+display: flex;
+justify-content:center;
+align-items: center;
+flex-direction: column;
+}
+
+.body__3  >h3>span{
+   width: 100%;
+}
+.body__2  >h3 {
+   width: 100%;
+   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+   border-radius: 12px;
+   display: flex;
+   justify-content:center;
+   align-items: center;
+   flex-direction: column;
+}
+
+.body__2  >h3>span{
+  width: 100%;
+}
+  .body__profil{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+
+  .Profil__student{
+    width: 100%;
+    
+  }
+  .Profil__buttons{
+    display: flex ;
+    width: 100%;
+    flex-direction: column-reverse;
+  }
+  .Profil__student__body{
+    width: 90%;
+    }
+    .cercle{
+      width: 40%;
+      height: 100px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+
+
 }

@@ -1,39 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import authService from '../services/auth.service';
+import StudentItem from './StudentItem';
 
 const ListStudent = () => {
     const [ etudiants,setEtudiants ]=useState([])
 
-    console.log(etudiants)
-   
-    useEffect(() => {
+   useEffect(() => {
             setEtudiants(authService.getCurrentUserDetails().etudiants)
-             return false        
+                    
     },[]);
 
     return (
         <div  className="listentreprise" >
             <h1> liste des candidats </h1>
             {etudiants.map(  item=>{ 
+                console.log("iteem :",item)
                 return (
                 
-                <div key={item.id}  id="badge" className="entreprisesList__body2">
-                   <div className="part1  part">
-                       <div className="cercle">
-                          </div>
-                   </div>
-                   <div   className="part">
-                        <h3><span>nom :</span>  {item.name} </h3>
-                        <h3><span>user-name: </span>  {item.username} </h3>
-                        <h3> <span> année :</span>  {item.annee}   </h3>
-                   </div>
-
-                   <div className="part">
-                       <h3> <span>GSM : </span>  { item.telephone } </h3>
-                       <h3> <span>filliére :  </span> {item.filliere} </h3>
-                       <h3> <span>email :</span>  { item.email }   </h3>
-                   </div>
-          </div>  )})
+               
+                   
+               <StudentItem   key={item.id} id={item.id}  name={item.name} 
+                   annee={item.annee}  telephone={item.telephone}   filliere={item.filliere}
+                  email= {item.email} photo={item.photo}
+                   />
+            )})
           }   
         </div>
     )

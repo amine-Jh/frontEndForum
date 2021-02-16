@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import authHeader from "../services/auth.service"
-import {Link, Redirect, Route, Switch } from 'react-router-dom'
+import {Link, Route, Switch } from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
 import Home from './Home'
 import Login from './Login'
@@ -18,12 +18,9 @@ import UpdateCompany from './UpdateCompany';
 
 const Header = () => {
     let history=new useHistory();
-
-    let id=2
-    const logouts=()=>{  
-        authService.logout() ;
-      history.push("/home");
-      window.location.reload();
+    const logouts=()=>{  authService.logout() ;
+        history.push("/home");
+        window.location.reload();
     }
 
 
@@ -32,29 +29,29 @@ const Header = () => {
     const [isStudent,setStudent]=useState(false);
     const [ isAuth,setAuth ]=useState(false)
     useEffect(()=>{
-        if(authHeader.getCurrentUser()){
-          
-          
-        setAdmin(authHeader.getCurrentUser().roles.includes("ROLE_ADMIN"))
+        if(authHeader.getCurrentUser())
+        {
+          setAdmin(authHeader.getCurrentUser().roles.includes("ROLE_ADMIN"))
         setCompany(authHeader.getCurrentUser().roles.includes("ROLE_COMPANY"))
         setStudent(authHeader.getCurrentUser().roles.includes("ROLE_ETUDIANT"))
         setAuth(true);
           let id=authHeader.getCurrentUser().id
           if(isCompany){
-            
+            console.log("compaaany")
             userData.getUserInfoCompany(id).then( r=>
               localStorage.setItem("moredetails",JSON.stringify(r.data))
               
               )
           }
           if(isStudent){
-            
+            console.log("stuuudentt")
             userData.getUserInfoStudent(id).then( r=> 
-              localStorage.setItem("moredetails",JSON.stringify(r.data) )   )
-          }
+            {  console.log("daaata",r.data)
+              localStorage.setItem("moredetails",JSON.stringify(r.data) )  })}
         }
-    })
-
+    },[isAuth])
+    console.log("object")
+/** mmm  */
     const open=(e)=>{
       let nav=document.getElementById("nav")
 
@@ -78,10 +75,11 @@ const Header = () => {
 
 
     return (
-        <div>
+        <>
         <header> 
+          <div className="header__container">
           <div className="left__header">
-          <Link className="link" to={"/home"} className="left__header__li">
+          <Link className="link left__header__li" to={"/home"} >
            ENSAKFORUM
           </Link>
           </div>
@@ -92,22 +90,19 @@ const Header = () => {
             <ul  className="right__header__desktop"  >
             <Link className="link" to={"/signupstudent"} > <div href="#">S'inscrire Etudiant</div>  </Link>
             <Link className="link" to={"/signupCompany"} > <div href="#">S'inscrire Entreprise </div>  </Link>
-            <Link  className="link" to={"/login"} className="login__buton" > <div  className="connect_i" >Se connecter</div>  </Link>
-           
+            <Link  className="link login__buton" to={"/login"}  > <div  className="connect_i" >Se connecter</div>  </Link>
            </ul>
-          
-           
-         </div>
+          </div>
            }
            { isCompany &&
            <div className="right__header2">
             <ul  className="auth   right__header__desktop" >
-           
-           <Link  className="link"  to={"/candidats"} > <div href="#">candidats</div> </Link>
-           <Link className="link" to={"/ProfilEntreprise"}  className="login__buton" > <div className="connect_i"  href="#">Profile </div> 
-            </Link>
-            <Link onClick={ logouts } className="link"  ><div href="">logout</div> </Link>
-         </ul></div>
+              <Link  className="link"  to={"/candidats"} > <div >candidats</div> </Link>
+              <Link className="link login__buton" to={"/ProfilEntreprise"}   > <div className="connect_i"  href="#">Profile </div> 
+              </Link>
+              <Link onClick={ logouts } className="link "  ><div href="">logout</div> </Link>
+            </ul>
+            </div>
            }
             
             { isStudent &&
@@ -115,19 +110,17 @@ const Header = () => {
             <ul  className=" auth right__header__desktop" >
            
            <Link className="link" to={"/ProfilStudent"} > <div href="#"> {authHeader.getCurrentUser().name} <i class="fas fa-user"></i> </div>  </Link>
-           <Link className="link" to={"/entreprises"}  className="login__buton" > <div className="connect_i"> list entreprises <i class="far fa-building"></i> </div> 
+           <Link className="link login__buton" to={"/entreprises"}  > <div className="connect_i"> list entreprises <i class="far fa-building"></i> </div> 
             </Link>
-            <Link className="link" onClick={ logouts }  > logout <i class="fas fa-sign-out-alt"></i></Link>
+            <Link className="link " onClick={ logouts }  > logout <i class="fas fa-sign-out-alt"></i></Link>
          </ul></div>
            }
 
             <div  onClick={(e)=>open(e)}  className="bar" >
             <i  class="fas fa-bars bar"></i>
             </div>
-       
-     </header>
-      
-         { !isAuth &&
+            </div>
+        { !isAuth &&
            <div className="right__header__phone "  id="nav" >
             <ul  className="phone__navbar"  >
             <Link className="link__phone" to={"/signupstudent"} > <div >S'inscrire Etudiant</div>  </Link>
@@ -145,26 +138,23 @@ const Header = () => {
            <Link  className="link__phone"  to={"/candidats"} > <div href="#">candidats</div> </Link>
            <Link className="link__phone" to={"/ProfilEntreprise"}   > <div className="connect_i"  href="#">Profile </div> 
             </Link>
-            <Link onClick={ logouts } className="link__phone"  ><div href="">logout</div> </Link>
+            <Link onClick={ logouts } className="link__phone logout"  ><div href="">logout</div> </Link>
          </ul></div>
            }
 
-{ isStudent &&
+        { isStudent &&
             <div className="right__header__phone"   id="nav">
             <ul  className="phone__navbar" >
            
            <Link className="link__phone" to={"/ProfilStudent"} > <div href="#"> {authHeader.getCurrentUser().name} <i class="fas fa-user"></i> </div>  </Link>
-           <Link className="link__phone" to={"/entreprises"}  > <div > list entreprises <i class="far fa-building"></i> </div> 
-            </Link>
-            <Link className="link__phone" onClick={ logouts }  > logout <i class="fas fa-sign-out-alt"></i></Link>
+           <Link className="link__phone" to={"/entreprises"}  > <div > list entreprises <i class="far fa-building"></i> </div> </Link>
+            <Link className="link__phone logout" onClick={ logouts }  > logout <i class="fas fa-sign-out-alt"></i></Link>
          </ul></div>
            }
            
-    
+     </header>
 
-     
-     
-     <Switch>
+      <Switch>
 
             <Route exact path={["/", "/home"]} component={Home} />
             <Route exact path="/login"  component={Login} />
@@ -180,7 +170,14 @@ const Header = () => {
            
             
     </Switch>
-    </div>
+        
+           
+    
+
+     
+     
+    
+    </>
     )
 }
 

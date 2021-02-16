@@ -4,25 +4,27 @@ import React, {  useEffect, useState } from 'react';
 import UserService from '../services/user-data'
 import authHeader from "../services/auth.service"
 import "./css/ProfilStudent.css"
-
 import authService from '../services/auth.service';
 import { Link, useHistory } from 'react-router-dom';
-import html2canvas from 'html2canvas';
-
-
-
-
+import uploadService from '../services/upload-service';
 
 const ProfilEntreprise = () => {
     const [UserInfo,SetUserinfo]=useState({});
+    const [src,setSrc]=useState("");
     let history=useHistory()
     let id=authHeader.getCurrentUser().id;
     
 useEffect(() => {
         UserService.getUserInfoCompany(id).then(
-           res=> { 
-               SetUserinfo (res.data) } ); 
-       },[]);
+           res=> {
+            SetUserinfo (res.data)
+        
+            uploadService.getFiles(res.data.photo.id).then(e=>{
+                const objectURL = URL.createObjectURL(e.data)
+                setSrc(objectURL)
+            })
+            }); 
+       },[id]);
    
     const deleteprofile=()=>{
         let verify=prompt("press d si tu veux supprimer")
@@ -36,10 +38,10 @@ useEffect(() => {
 
      }
           return (
-              <div className="profil__container">
+    <div className="profil__container">
           <div className="body__profil" >
           <div className="Profil__buttons">
-          <Link  className="Profil__Link"  to={`/company/edit/${id}`} >modifier le profile </Link>
+                   <Link  className="Profil__Link"  to={`/company/edit/${id}`} >modifier le profile </Link>
                    <button  onClick={()=>deleteprofile()} className="Profil__button" >Supprimer le profile</button>
                    <button  className="Profil__button" > imprimer le badge </button>
                    <button   className="Profil__button" >Voir les entreprises</button>
@@ -50,9 +52,9 @@ useEffect(() => {
           
           <div   id="badge" className="Profil__student__body">
                    <div className="body__1">
-                       <div className="cercle">
-                          
-                       </div>
+                       
+                       <img src={UserInfo.photo?src:""}  className="cercle" alt="hello" /> 
+                    
                        <h2> ENSA KENITRA </h2>
                    </div>
                    <div className="body__2">
@@ -62,9 +64,9 @@ useEffect(() => {
                    </div>
 
                    <div className="body__3">
-                       <h3> <span>GSM : </span>  { UserInfo.telephone } </h3>
+                       <h3> <span>GSM : </span>  { UserInfo.telephone} </h3>
                        <h3> <span>type :  </span> {UserInfo.type} </h3>
-                       <h3> <span>email :</span>  { UserInfo.email }   </h3>
+                       <h3> <span>email :</span>  { UserInfo.email}   </h3>
                    </div>
           
 
@@ -75,7 +77,7 @@ useEffect(() => {
            
        </div>
        </div>
-       </div>
+    </div>
    )
 }
 

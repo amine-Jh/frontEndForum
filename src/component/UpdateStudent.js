@@ -6,8 +6,7 @@ import CheckButton from "react-validation/build/button";
 import {isEmail ,equals } from "validator";
 import "./css/Login.css";
 import "./css/SignUp.css"
-
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import authService from '../services/auth.service';
 import userData from '../services/user-data';
 

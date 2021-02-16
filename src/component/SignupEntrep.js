@@ -9,6 +9,7 @@ import "./css/Login.css";
 import "./css/SignUp.css"
 import AuthService from '../services/auth.service';
 import { useHistory } from 'react-router-dom';
+import uploadService from '../services/upload-service';
 
 const SignupEntrep = () => {
     let forml;
@@ -20,6 +21,8 @@ const SignupEntrep = () => {
       const [adresse,setAdresse]=useState("");
       const [telephone,setTelephone]=useState("");
       const [type,setType]=useState("");
+      
+      const [photo,setPhoto]=useState(null)
       const [emailv,setEmail]=useState("");
       let history=new useHistory();
 
@@ -29,16 +32,29 @@ const SignupEntrep = () => {
         return <div className="alert" >  entrer un nombre valide </div>
       }
 
+      function handlePhoto(e){
+        let file =e.target.files[0]
+        uploadService.upload(file).then(
+          e=> {
+            console.log(e.data)
+              setPhoto(e.data)
+        }
+        )}
+
 const handleLogin=(e)=>{
         e.preventDefault();
-       
         forml.validateAll();
+
         if (btn.context._errors.length === 0) {
-        AuthService.signupCompany(name,password,telephone,emailv,type,adresse,username)
+          uploadService.upload(photo).then(
+            e=> {console.log("tswira",e.data)
+                setPhoto(e.data)
+          }
+          )
+        AuthService.signupCompany(name,password,telephone,emailv,type,adresse,username,photo)
         .then(   response=>{ setMessage(response) 
-                if(   response.message.startsWith("Welcome") ){
+                if(response.message.startsWith("Welcome") ){
                   history.push("/login");
-                  
                   window.location.reload();
                 }
         })
@@ -115,7 +131,7 @@ const handleLogin=(e)=>{
         <option value='coopérative'>coopérative</option>
         
     </Select>
-    
+    <Input type="file" name="file" onChange={(e)=>handlePhoto(e)}   placeholder="file"  />
                         <CheckButton className="button"  ref={c => {btn = c;}} > S'inscrire </CheckButton>
                     </div>
                     </Form>

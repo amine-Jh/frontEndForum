@@ -24,18 +24,14 @@ let btn;
   const [filliere,setFilliere]=useState("");
   const [annee,setAnnee]=useState("");
   const [emailv,setEmail]=useState("");
-  const [src,setSrc]=useState(null);
+ 
   let history=new useHistory();
 
-  
- 
   const handleLogin=(e)=>{
     e.preventDefault();
-    
     forml.validateAll();
     if (btn.context._errors.length === 0) {
-      
-    AuthService.signupStuent(name,password,telephone,emailv,annee,filliere,username,photo)
+      AuthService.signupStuent(name,password,telephone,emailv,annee,filliere,username,photo)
     .then(   response=>{  
       setMessage(response) 
             if( response.message.startsWith("Welcome") ){
@@ -49,41 +45,23 @@ let btn;
  function handlePhoto(e){
   let file =e.target.files[0]
   uploadService.upload(file).then(
-    e=> {console.log("tswira",e.data)
+    e=> {
         setPhoto(e.data)
   }
-  )
-  
- /* uploadService.getFiles("944b9ca0-c1c8-41db-97ab-79b10d93a83e").then(e=>{
-    
-    const objectURL = URL.createObjectURL(e.data)
-    setPhoto(objectURL)
-   
-  }
-  )*/
-  
-  
-  }
+  )}
 
   const vpassword = value => {
     if (value.length < 6 || value.length > 40) 
       return(<span className="alert" > The password must be between 6 and 40 characters.</span>);
     };
-
-    const required = value => {
+const required = value => {
         if (!value) 
         return (<div className="alert" > ce champ est obligatoire . </div>);
-          
-          
-        
-      };
-
-      const vusername = value => {
+  };
+const vusername = value => {
         if (value.length < 3 || value.length > 20) {
-         
-          return( <div className="alert" >The username must be between 3 and 20 characters. </div>  )
-        
-         }
+           return( <div className="alert" >The username must be between 3 and 20 characters. </div>  )
+        }
       };
 
       const email = (value) => {
@@ -137,7 +115,7 @@ let btn;
                 </div>
                 </Form>
 <h2  className="message" >  {message.message } </h2>
-<img  src={photo} alt="phot" ></img>
+
         
           </div>
       </div>

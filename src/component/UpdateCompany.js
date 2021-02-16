@@ -7,7 +7,7 @@ import CheckButton from "react-validation/build/button";
 import {isEmail} from "validator";
 import "./css/Login.css";
 import "./css/SignUp.css"
-import AuthService from '../services/auth.service';
+
 import { useHistory } from 'react-router-dom';
 import userData from '../services/user-data';
 import authService from '../services/auth.service';
@@ -51,8 +51,7 @@ const UpdateCompany = () => {
        
         forml.validateAll();
         if (btn.context._errors.length === 0) {
-        userData.updateCompany(id,type,telephone,emailv,adresse,name,password).
-        then(e=>{
+        userData.updateCompany(id,type,telephone,emailv,adresse,name,password).then(e=>{
             if(e.data.message){
                setMessage(e.data.message)
             }

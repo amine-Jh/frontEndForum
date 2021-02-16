@@ -22,7 +22,7 @@ class UploadPhotosService {
   }
 
   getPhoto(idphoto) {
-    return http.get("/api/auth/files/"+idphoto)
+    return http.get("/api/auth/files/"+idphoto,{ responseType: "blob" })
     ;
   }
 }

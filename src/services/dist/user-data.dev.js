@@ -46,12 +46,40 @@ function () {
       });
     }
   }, {
+    key: "updateStudent",
+    value: function updateStudent(id, annee, telephone, email, filliere, name, password) {
+      return _axios["default"].put(API_URL + 'etudiants/' + id, {
+        name: name,
+        email: email,
+        telephone: telephone,
+        annee: annee,
+        filliere: filliere,
+        password: password
+      }, {
+        headers: (0, _authHeader["default"])()
+      });
+    }
+  }, {
+    key: "updateCompany",
+    value: function updateCompany(id, type, telephone, email, adresse, name, password) {
+      return _axios["default"].put(API_URL + 'companies/' + id, {
+        name: name,
+        email: email,
+        telephone: telephone,
+        adresse: adresse,
+        type: type,
+        password: password
+      }, {
+        headers: (0, _authHeader["default"])()
+      });
+    }
+  }, {
     key: "getAllCompanies",
     value: function getAllCompanies() {
       return _axios["default"].get(API_URL + 'companies', {
         headers: (0, _authHeader["default"])()
-      }).then(function (e) {
-        return e.data;
+      }, {
+        responseType: 'blob'
       });
     }
   }, {
@@ -60,7 +88,6 @@ function () {
       var user = _axios["default"].post(API_URL + "postuler/" + id + "/company/" + ids, {}, {
         headers: (0, _authHeader["default"])()
       }).then(function (r) {
-        console.log("rrrr", r.data.companies);
         return r;
       });
 
@@ -72,7 +99,6 @@ function () {
       var user = _axios["default"].post(API_URL + "depostuler/" + id + "/company/" + ids, {}, {
         headers: (0, _authHeader["default"])()
       }).then(function (r) {
-        console.log("rrrr", r.data.companies);
         return r;
       });
 

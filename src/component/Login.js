@@ -8,12 +8,13 @@ import CheckButton from "react-validation/build/button";
 import AuthService from "../services/auth.service";
 import "./css/Login.css"
 import   svg  from "./images/loginhome.svg"
+import authHeader from '../services/auth-header';
+import authService from '../services/auth.service';
 
 const Login = (props) => {
   let forml=null;
   const [username,setUsername]=useState("");
    const [password,setPassword]=useState("");
-   
    const [response,setResponse]=useState("");
    let history=useHistory()
    // handle login submit
@@ -28,6 +29,7 @@ const Login = (props) => {
         if(res.message)
          setResponse(res.message)
        else{
+         
          history.push("/home");
          window.location.reload();}
       
