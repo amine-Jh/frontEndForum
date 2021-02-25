@@ -133,10 +133,15 @@ flex-direction: column;
    justify-content:center;
    align-items: center;
    flex-direction: column;
+   
+}
+.adresse__field{
+  padding:4px;
 }
 
 .body__2  >h3>span{
   width: 100%;
+  
 }
   .body__profil{
     display: flex;

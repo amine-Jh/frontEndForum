@@ -36,7 +36,7 @@ const SignupEntrep = () => {
         let file =e.target.files[0]
         uploadService.upload(file).then(
           e=> {
-            console.log(e.data)
+            
               setPhoto(e.data)
         }
         )}
@@ -46,14 +46,16 @@ const handleLogin=(e)=>{
         forml.validateAll();
 
         if (btn.context._errors.length === 0) {
+          
           uploadService.upload(photo).then(
-            e=> {console.log("tswira",e.data)
+            e=> {
                 setPhoto(e.data)
           }
           )
         AuthService.signupCompany(name,password,telephone,emailv,type,adresse,username,photo)
         .then(   response=>{ setMessage(response) 
                 if(response.message.startsWith("Welcome") ){
+                  
                   history.push("/login");
                   window.location.reload();
                 }
@@ -66,9 +68,9 @@ const handleLogin=(e)=>{
     
     
       const vpassword = value => {
-        if (value.length < 6 || value.length > 30) 
+        if (value.length < 6 || value.length > 20) 
           return(<div className="alert"  >
-            password entre 6 et 20 caractéres
+            password doit etre entre 6 et 20 caractéres
             </div>);
          
         
@@ -85,7 +87,7 @@ const handleLogin=(e)=>{
           const vusername = value => {
             if (value.length < 3 || value.length > 20) {
              
-              return( <div className="alert" >The username must be between 3 and 20 characters. </div>  )
+              return( <div className="alert" >password doit etre entre 6 et 20 caractéres </div>  )
             
              }
           };
@@ -121,18 +123,17 @@ const handleLogin=(e)=>{
                         <Input type="text" name="username"  onChange={e=>setUsername(e.target.value)}   validations={[required,vusername]} 
                          placeholder="username"  />
 
-<Textarea name='adresse' validations={[required]} placeholder="adresse"  onChange={e=>setAdresse(e.target.value)} />
+                        <Textarea name='adresse' validations={[required]} placeholder="adresse"  onChange={e=>setAdresse(e.target.value)} />
       
-        <Select   name='type' onChange={e=>setType(e.target.value)} validations={[required]}  >
-        <option value=''>Type d'entreprise</option>
-        <option value='société en nom collectif'>société en nom collectif </option>
-        <option value='société en commandité'>société en commandité</option>
-        <option value='société  par action'>société  par action</option>
-        <option value='coopérative'>coopérative</option>
-        
-    </Select>
-    <Input type="file" name="file" onChange={(e)=>handlePhoto(e)}   placeholder="file"  />
-                        <CheckButton className="button"  ref={c => {btn = c;}} > S'inscrire </CheckButton>
+                          <Select   name='type' onChange={e=>setType(e.target.value)} validations={[required]}  >
+                              <option value=''>Type d'entreprise</option>
+                              <option value='société en nom collectif'>société en nom collectif </option>
+                              <option value='société en commandité'>société en commandité</option>
+                              <option value='société  par action'>société  par action</option>
+                              <option value='coopérative'>coopérative</option>
+                          </Select>
+                      <Input type="file" name="file" className="file_input" onChange={(e)=>handlePhoto(e)}   />
+                      <CheckButton className="button"  ref={c => {btn = c;}} > S'inscrire </CheckButton>
                     </div>
                     </Form>
     <h2  className="message" >  {message.message } </h2>

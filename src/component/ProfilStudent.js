@@ -10,6 +10,7 @@ import userData from '../services/user-data';
 import authService from '../services/auth.service';
 import { useHistory ,Link} from 'react-router-dom';
 import uploadService from '../services/upload-service';
+import html2canvas from 'html2canvas';
 
 
 
@@ -41,22 +42,33 @@ const ProfilStudent = () => {
         window.location.reload();
         }
 }
-       console.log("render time")
+    
+        function imprimer(){
+            
+           html2canvas(document.getElementById("badge")).then(
+                canvas=> {
+                    var img    = canvas.toDataURL("image/png");
+                    document.write('<img src="'+img+'"/>');
+                console.log("hhdhd")
+                }
+            ) 
+        }
+
            return (
                <div className="profil__container">
                 <div className="body__profil" >
                 <div className="Profil__buttons">
                     <Link  className="Profil__Link"  to={`/student/edit/${id}`} >modifier le profile </Link>
                     <button onClick={()=>deleteprofile()}  className="Profil__button" >Supprimer le profile</button>
-                    <button  className="Profil__button" > imprimer le badge </button>
-                    <button   className="Profil__button" >Voir les entreprises</button>
+                    <button  className="Profil__button"  onClick={()=>imprimer()}> imprimer le badge </button>
+                    <Link  className="Profil__Link"  to={`/entreprises`} >Voir les entreprises </Link>
                 </div>
-        <div  className="Profil__student"  >
+        <div  className="Profil__student"   >
            <h1 className="title__header" >  Mon Profile <i class="fas fa-id-card"></i> </h1>
-           <div className="Profil__student__body">
+           <div className="Profil__student__body" id="badge" >
            
                     <div className="body__1">
-                        <img src={UserInfo.photo?src:""}  className="cercle" alt="hello"/> 
+                        <img src={UserInfo.photo?src:""}  className="cercle" alt="profile_photo"/> 
                     <h2> ENSA KENITRA </h2>
                     </div>
                     <div className="body__2">

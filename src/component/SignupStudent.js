@@ -53,7 +53,7 @@ let btn;
 
   const vpassword = value => {
     if (value.length < 6 || value.length > 40) 
-      return(<span className="alert" > The password must be between 6 and 40 characters.</span>);
+      return(<div className="alert" > password doit etre entre 6 et 20 caractéres.</div>);
     };
 const required = value => {
         if (!value) 
@@ -61,7 +61,7 @@ const required = value => {
   };
 const vusername = value => {
         if (value.length < 3 || value.length > 20) {
-           return( <div className="alert" >The username must be between 3 and 20 characters. </div>  )
+           return( <div className="alert" >username doit etre entre 6 et 20 caractéres</div>  )
         }
       };
 
@@ -92,22 +92,22 @@ const vusername = value => {
                 
                     <Input type="text" name="username"  onChange={e=>setUsername(e.target.value)}  validations={[required,vusername]}  placeholder="username"  />
                     <Select name='annee'  onChange={e=>setAnnee(e.target.value)  }  validations={[required]}>
-    <option value=''>entrer l'annee</option>
-    <option value='3eme'>3eme année</option>
-    <option value='4eme'>4éme année</option>
-    <option value='5eme'>5éme année</option>
-</Select>
-    <Select   name='filliere' onChange={e=>setFilliere(e.target.value)} validations={[required]}  >
-    <option value=''>entrer votre filliere</option>
-    <option value='GI'>G.info</option>
-    <option value='GIND'>G.indus</option>
-    <option value='GE'>G.Elec</option>
-    <option value='GM'>G.Mecatronique</option>
-    <option value='RST'>G.RST</option>
-</Select>
+                      <option value=''>entrer l'annee</option>
+                      <option value='3eme'>3eme année</option>
+                      <option value='4eme'>4éme année</option>
+                      <option value='5eme'>5éme année</option>
+                    </Select>
+                    <Select   name='filliere' onChange={e=>setFilliere(e.target.value)} validations={[required]}  >
+                        <option value=''>entrer votre filliere</option>
+                        <option value='GI'>G.info</option>
+                        <option value='GIND'>G.indus</option>
+                        <option value='GE'>G.Elec</option>
+                        <option value='GM'>G.Mecatronique</option>
+                        <option value='RST'>G.RST</option>
+                    </Select>
 
 
-<Input type="file" name="file" onChange={(e)=>handlePhoto(e)}   placeholder="file"  />
+                  <Input type="file" name="file"  className="file_input" onChange={(e)=>handlePhoto(e)}   placeholder="file"  />
 
                     <CheckButton className="button" ref={c => {btn = c;}} 
                     

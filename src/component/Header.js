@@ -16,6 +16,7 @@ import userData from '../services/user-data';
 import ListStudent from './ListStudent';
 import UpdateCompany from './UpdateCompany';
 
+
 const Header = () => {
     let history=new useHistory();
     const logouts=()=>{  authService.logout() ;
@@ -50,7 +51,7 @@ const Header = () => {
               localStorage.setItem("moredetails",JSON.stringify(r.data) )  })}
         }
     },[isAuth])
-    console.log("object")
+    
 /** mmm  */
     const open=(e)=>{
       let nav=document.getElementById("nav")
@@ -70,10 +71,6 @@ const Header = () => {
     }
 
     
-    
-    
-
-
     return (
         <>
         <header> 

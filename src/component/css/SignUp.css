@@ -17,7 +17,7 @@
 background: linear-gradient(99.35deg, #ADE8F4 0.41%, #44A4CF 97.32%, #0076b6bc 100.54%, rgba(255, 255, 255, 0) 102.28%), #FFFFFF;
 min-height: 100vh;
 max-width: auto;
-
+padding-top: 20px;
 }
 
 .signup__body  >h1 {
@@ -64,12 +64,12 @@ button  {
 }
 
 .signup__body{
-    height: 80%;
+    height: 100%  !important ;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
+ }
 .register__form{
     background:linear-gradient(118.34deg, #023E8A 3.33%, rgba(255, 255, 255, 0) 100.09%), #0077B6 ;
     display: flex;
@@ -79,14 +79,31 @@ button  {
     flex-wrap: wrap;
     border-radius: 50px;
     mix-blend-mode: normal;
-box-shadow: 6px 4px 4px rgba(0, 0, 0, 0.25);
-
+    box-shadow: 6px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .signup__container{
    padding: 12px;
   width: 60vw;
   }
 
+  
+  .file_input::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+  .file_input::before {
+    content: 'entrer une photo ';
+    display: inline-block;
+    
+    border: 1px solid #023E8A ;
+    border-radius: 4px;
+    padding: 1px;
+    outline: none;
+    white-space: nowrap;
+    
+    cursor: pointer;
+    font-weight: 200;
+    font-size: 10pt;
+  }
 
 @media screen and (max-width: 600px) {
     .signup__body  >h1 {
