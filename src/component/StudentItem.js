@@ -5,10 +5,13 @@ const StudentItem = (props) => {
     const [src,SetSrc]=useState("");
     useEffect(
         ()=>{
-            uploadService.getFiles(props.photo.id).then(e=>{
+            if(props.photo!=null){
+              uploadService.getFiles(props.photo.id).then(e=>{
                const url = URL.createObjectURL(e.data)
                SetSrc(url)
-            })},[1])
+            })  
+            }
+            },[1])
 
 
   return (
@@ -18,7 +21,7 @@ const StudentItem = (props) => {
                    </div>
                    <div  className="entreprise__item__part">
                         <h3><span>nom :</span>  {props.name} </h3>
-                        <h3><span>user-name: </span>  {props.username} </h3>
+                        
                         <h3> <span> année :</span>  {props.annee}   </h3>
                    </div>
 

@@ -109,6 +109,12 @@ ul >.link {
     transform: rotate(90deg);
 }
 
+.phone__navbar
+{
+ display: none;
+
+}
+
 @media screen and (max-width: 600px){
 
 

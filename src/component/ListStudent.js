@@ -16,10 +16,7 @@ const ListStudent = () => {
             {etudiants.map(  item=>{ 
                 console.log("iteem :",item)
                 return (
-                
-               
-                   
-               <StudentItem   key={item.id} id={item.id}  name={item.name} 
+                <StudentItem   key={item.id} id={item.id}  name={item.name} 
                    annee={item.annee}  telephone={item.telephone}   filliere={item.filliere}
                   email= {item.email} photo={item.photo}
                    />

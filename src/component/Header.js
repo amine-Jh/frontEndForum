@@ -97,10 +97,10 @@ const Header = () => {
            { isCompany &&
            <div className="right__header2">
             <ul  className="auth   right__header__desktop" >
-              <Link  className="link"  to={"/candidats"} > <div >candidats</div> </Link>
-              <Link className="link login__buton" to={"/ProfilEntreprise"}   > <div className="connect_i"  href="#">Profile </div> 
+              <Link  className="link"  to={"/candidats"} > <div >candidats <i className="fas fa-user-friends"></i></div> </Link>
+              <Link className="link login__buton" to={"/ProfilEntreprise"}   > <div className="connect_i"  > {authHeader.getCurrentUser().name} <i className="fas fa-user"></i> </div> 
               </Link>
-              <Link onClick={ logouts } className="link "  ><div href="">logout</div> </Link>
+              <Link onClick={ logouts } className="link "  ><div href="">logout  <i className="fas fa-sign-out-alt"></i> </div> </Link>
             </ul>
             </div>
            }
@@ -109,15 +109,15 @@ const Header = () => {
             <div className="right__header2">
             <ul  className=" auth right__header__desktop" >
            
-           <Link className="link" to={"/ProfilStudent"} > <div href="#"> {authHeader.getCurrentUser().name} <i class="fas fa-user"></i> </div>  </Link>
+           <Link className="link" to={"/ProfilStudent"} > <div> {authHeader.getCurrentUser().name} <i className="fas fa-user"></i> </div>  </Link>
            <Link className="link login__buton" to={"/entreprises"}  > <div className="connect_i"> list entreprises <i class="far fa-building"></i> </div> 
             </Link>
-            <Link className="link " onClick={ logouts }  > logout <i class="fas fa-sign-out-alt"></i></Link>
+            <Link className="link " onClick={ logouts }  > logout <i className="fas fa-sign-out-alt"></i></Link>
          </ul></div>
            }
 
             <div  onClick={(e)=>open(e)}  className="bar" >
-            <i  class="fas fa-bars bar"></i>
+            <i  className="fas fa-bars bar"></i>
             </div>
             </div>
         { !isAuth &&
@@ -135,10 +135,10 @@ const Header = () => {
            <div className="right__header__phone "  id="nav" >
             <ul  className="phone__navbar" >
            
-           <Link  className="link__phone"  to={"/candidats"} > <div href="#">candidats</div> </Link>
+           <Link  className="link__phone"  to={"/candidats"} > <div href="#">candidats <i className="fas fa-user-friends"></i></div> </Link>
            <Link className="link__phone" to={"/ProfilEntreprise"}   > <div className="connect_i"  href="#">Profile </div> 
             </Link>
-            <Link onClick={ logouts } className="link__phone logout"  ><div href="">logout</div> </Link>
+            <Link onClick={ logouts } className="link__phone logout"  ><div href="">logout<i className="fas fa-sign-out-alt"></i></div> </Link>
          </ul></div>
            }
 
@@ -146,9 +146,9 @@ const Header = () => {
             <div className="right__header__phone"   id="nav">
             <ul  className="phone__navbar" >
            
-           <Link className="link__phone" to={"/ProfilStudent"} > <div href="#"> {authHeader.getCurrentUser().name} <i class="fas fa-user"></i> </div>  </Link>
-           <Link className="link__phone" to={"/entreprises"}  > <div > list entreprises <i class="far fa-building"></i> </div> </Link>
-            <Link className="link__phone logout" onClick={ logouts }  > logout <i class="fas fa-sign-out-alt"></i></Link>
+           <Link className="link__phone" to={"/ProfilStudent"} > <div href="#"> {authHeader.getCurrentUser().name} <i className="fas fa-user"></i> </div>  </Link>
+           <Link className="link__phone" to={"/entreprises"}  > <div > list entreprises <i className="far fa-building"></i> </div> </Link>
+            <Link className="link__phone logout" onClick={ logouts }  > logout <i className="fas fa-sign-out-alt"></i></Link>
          </ul></div>
            }
            

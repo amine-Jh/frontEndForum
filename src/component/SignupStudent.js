@@ -44,6 +44,7 @@ let btn;
 
  function handlePhoto(e){
   let file =e.target.files[0]
+  console.log("file",file)
   uploadService.upload(file).then(
     e=> {
         setPhoto(e.data)
@@ -114,7 +115,7 @@ const vusername = value => {
                     > S'inscrire </CheckButton>
                 </div>
                 </Form>
-<h2  className="message" >  {message.message } </h2>
+<h2  className="message"> {message.message } </h2>
 
         
           </div>

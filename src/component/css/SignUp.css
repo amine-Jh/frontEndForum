@@ -99,16 +99,16 @@ box-shadow: 6px 4px 4px rgba(0, 0, 0, 0.25);
             
             }
             Input,select,textarea{
-                width: 220px  !important;
+                width: 200px  !important;
                 }
 
           .button{
-              width: 220px;
+              width: 200px;
           }
 
           .signup__container{
             padding: 12px;
-           width: 90%;
+           width: 95%;
            }
            .signup{
             padding: 12px;
